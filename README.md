@@ -7,7 +7,7 @@
 # Test 명세서
 ## 20190801
 ### Restaurant Domain 작성
-[]Restaurant 객체 생성 테스트
-[]name 속성 테스트
-[]address 속성 테스트
-[]속성 결합 테스트
+- [X] Restaurant 객체 생성 테스트
+- [X] name 속성 테스트
+- [X] address 속성 테스트
+- [X] 속성 결합 테스트
