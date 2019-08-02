@@ -14,14 +14,16 @@
 
 ##20190802
 ### Restaurant Domain 테스트 추가
-- [ ] ID 속성 테스트
+- [X] ID 속성 테스트
 
 ### Test 설정 추가
-- [ ] Spring MVC Test 설정
+- [X] Spring MVC Test 설정
 
 ### Restaurant Collection GET endpoint 작성
-- [ ] 접속 테스트 (status 200)
-- [ ] Restaurant list 함수 테스트
-- [ ] list 함수 내 restaurant id 속성 테스트
-- [ ] list 함수 내 restaurant name 속성 테스트
-- [ ] list 함수 내 restaurant address 속성 테스트
+- [X] Interfaces 패키지 작성
+- [X] Restaurant Domain Controller 작성
+- [X] Restaurant list 함수 테스트
+- [X] 접속 테스트 (status 200)
+- [X] list 함수 내 restaurant id 속성 테스트
+- [X] list 함수 내 restaurant name 속성 테스트
+- [X] list 함수 내 restaurant address 속성 테스트

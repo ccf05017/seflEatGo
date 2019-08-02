@@ -8,11 +8,11 @@ import static org.hamcrest.Matchers.is;
 public class RestaurantTests {
 
     // Test용 restaurant object
-    Restaurant restaurant = new Restaurant("Nandos", "Seoul");
+    Restaurant restaurant = new Restaurant(3333L, "Nandos", "Seoul");
 
     @Test
     public void create() {
-        Restaurant restaurant = new Restaurant("Nandos", "Seoul");
+        Restaurant restaurant = new Restaurant(3333L, "Nandos", "Seoul");
     }
 
     @Test
@@ -23,6 +23,11 @@ public class RestaurantTests {
     @Test
     public void getAddress() {
         assertThat(this.restaurant.getAddress(), is("Seoul"));
+    }
+
+    @Test
+    public void getId() {
+        assertThat(this.restaurant.getId(), is(3333L));
     }
 
     @Test
