@@ -24,13 +24,52 @@ public class RestaurantControllerTests {
         mvc.perform(get("/restaurants"))
             .andExpect(status().isOk())
             .andExpect(content().string(
-                    containsString("\"name\":\"Nandos\"")
+                containsString("\"name\":\"Nandos\"")
             ))
             .andExpect(content().string(
-                    containsString("\"address\":\"Seoul\"")
+                containsString("\"address\":\"Seoul\"")
             ))
             .andExpect(content().string(
-                    containsString("\"id\":3333")
+                containsString("\"id\":3333")
+            ));
+    }
+
+    @Test
+    public void detail() throws Exception {
+        mvc.perform(get("/restaurants/3333"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                containsString("\"name\":\"Nandos\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"address\":\"Seoul\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"id\":3333")
+            ));
+
+        mvc.perform(get("/restaurants/4444"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                    containsString("\"name\":\"Manimal\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"address\":\"Itaewon\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"id\":4444")
+            ));
+
+        mvc.perform(get("/restaurants/5555"))
+            .andExpect(status().isOk())
+            .andExpect(content().string(
+                    containsString("\"name\":\"Bonasera\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"address\":\"Gangnam\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"id\":5555")
             ));
     }
 }
