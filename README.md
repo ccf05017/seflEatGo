@@ -30,3 +30,12 @@
 
 ## 20190803
 - 게으름 + 육아..
+
+## 20190804
+
+### Restaurant Member GET endpoint 작성
+- [ ] endpoint 접속 확인
+- [ ] 각 속성(ID, address, name) 확인
+- [ ] endpoint URI 내 ID 변수화(요청값에 따라 내용 바뀌도록)
+- [ ] Restaurant 객체 2개 이상으로 테스트
+- [ ] 여러 객체 중 하나만 가져올 수 있는 방법 모색 
