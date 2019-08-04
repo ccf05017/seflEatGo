@@ -27,3 +27,6 @@
 - [X] list 함수 내 restaurant id 속성 테스트
 - [X] list 함수 내 restaurant name 속성 테스트
 - [X] list 함수 내 restaurant address 속성 테스트
+
+## 20190803
+- 게으름 + 육아..
