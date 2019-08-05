@@ -41,3 +41,10 @@
 - [X] 여러 객체 중 하나만 가져올 수 있는 방법 모색 (=> Java Stream으로 해결)
 * !! Java Stream API 사용법 숙지할 것 !! (https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
 
+## 20190805
+
+### 리팩토링(중복코드 제거 + DI 적용)
+- [X] Restaurant Controller의 list(), detail() 중복 코드 제거
+- [X] 분리 된 중복 코드의 interface
+- [X] DI 적용
+- [X] test code 상의 context load 문제 해결(<= SpyBean 사용)
