@@ -48,3 +48,10 @@
 - [X] 분리 된 중복 코드의 interface
 - [X] DI 적용
 - [X] test code 상의 context load 문제 해결(<= SpyBean 사용)
+
+## 20190806
+
+### Restaurant에 메뉴 추가
+- [ ] Nandos restaurant test에 periperi 메뉴 추가 테스트
+- [ ] MenuItem domain 새로 만들기
+- [ ] 만들어진 domain을 repository 통해서 처리하기

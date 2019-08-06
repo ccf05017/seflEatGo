@@ -52,6 +52,9 @@ public class RestaurantControllerTests {
             ))
             .andExpect(content().string(
                 containsString("\"id\":3333")
+            ))
+            .andExpect(content().string(
+                    containsString("periperi")
             ));
 
         mvc.perform(get("/restaurants/4444"))
