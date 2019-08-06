@@ -42,6 +42,15 @@ public class RestaurantControllerTests {
             ))
             .andExpect(content().string(
                 containsString("\"id\":3333")
+            ))
+            .andExpect(content().string(
+                containsString("\"menuName\":\"periperi\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"menuName\":\"francesinha\"")
+            ))
+            .andExpect(content().string(
+                    containsString("\"restaurantId\":3333")
             ));
     }
 

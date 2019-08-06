@@ -57,6 +57,7 @@
 - [X] MenuItem 한개 추가하기
 - [X] MenuItem 여러개 추가하기
 - [X] 각 레스토랑별로 다른 메뉴 추가해서 확인하기
+- [X] list()에서도 작동하도록 기능 구현
 
 * test case에서 나오면 안될 값을 확인하는 방법????
 * getter가 없으면 spring bean이 속성값을 불러올 수 없다

@@ -1,7 +1,5 @@
 package com.saul.springboot.selfDemo.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 public class Restaurant {
@@ -11,8 +9,6 @@ public class Restaurant {
     private String address;
     private MenuItem menuItem;
 
-    @Autowired
-    private MenuItemRepository menuItemRepository;
     private List<MenuItem> menuItems;
 
     public Restaurant(Long id, String name, String address) {
