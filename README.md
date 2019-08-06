@@ -62,3 +62,12 @@
 * test case에서 나오면 안될 값을 확인하는 방법????
 * getter가 없으면 spring bean이 속성값을 불러올 수 없다
 * long / Long, int / Int 같은 건 구현 방식이 아예 다르다 (data type vs. Class)
+
+## 20190807
+
+### Application Layer 추가
+- [ ] detail()에서 application을 통해 restaurant 정보 받아오기
+- [ ] application layer 구현
+- [ ] application layer test 구현
+- [ ] 위의 application에 추가로 menuitem 정보까지 받아오기
+- [ ] list()에서도 같은 방식 적용하기
