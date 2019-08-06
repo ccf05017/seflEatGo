@@ -1,5 +1,7 @@
 package com.saul.springboot.selfDemo.interfaces;
 
+import com.saul.springboot.selfDemo.domain.MenuItemRepository;
+import com.saul.springboot.selfDemo.domain.MenuItemRepositoryImpl;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import com.saul.springboot.selfDemo.domain.RestaurantRepositoryImpl;
 import org.junit.Test;
@@ -24,6 +26,9 @@ public class RestaurantControllerTests {
 
     @SpyBean(RestaurantRepositoryImpl.class)
     RestaurantRepository restaurantRepository;
+
+    @SpyBean(MenuItemRepositoryImpl.class)
+    MenuItemRepository menuItemRepository;
 
     @Test
     public void list() throws Exception {
@@ -54,7 +59,13 @@ public class RestaurantControllerTests {
                 containsString("\"id\":3333")
             ))
             .andExpect(content().string(
-                    containsString("periperi")
+                    containsString("\"menuName\":\"periperi\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"menuName\":\"francesinha\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"restaurantId\":3333")
             ));
 
         mvc.perform(get("/restaurants/4444"))
@@ -67,6 +78,15 @@ public class RestaurantControllerTests {
             ))
             .andExpect(content().string(
                     containsString("\"id\":4444")
+            ))
+            .andExpect(content().string(
+                    containsString("\"menuName\":\"pulledfork\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"menuName\":\"slider\"")
+            ))
+            .andExpect(content().string(
+                containsString("\"restaurantId\":4444")
             ));
 
         mvc.perform(get("/restaurants/5555"))

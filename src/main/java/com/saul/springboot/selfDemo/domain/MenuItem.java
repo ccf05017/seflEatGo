@@ -2,13 +2,20 @@ package com.saul.springboot.selfDemo.domain;
 
 public class MenuItem {
 
-    private String name;
+    private Long restaurantId;
+    private String menuName;
 
-    public String getName() {
-        return this.name;
+    public MenuItem(long restaurantId, String menuName) {
+        this.restaurantId = restaurantId;
+        this.menuName = menuName;
     }
 
-    public MenuItem(String name) {
-        this.name = name;
+
+    public String getMenuName() {
+        return this.menuName;
+    }
+
+    public Long getRestaurantId() {
+        return this.restaurantId;
     }
 }

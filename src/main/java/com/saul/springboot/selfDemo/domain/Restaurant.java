@@ -2,6 +2,8 @@ package com.saul.springboot.selfDemo.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class Restaurant {
 
     private Long id;
@@ -11,6 +13,7 @@ public class Restaurant {
 
     @Autowired
     private MenuItemRepository menuItemRepository;
+    private List<MenuItem> menuItems;
 
     public Restaurant(Long id, String name, String address) {
         this.id = id;
@@ -34,15 +37,11 @@ public class Restaurant {
         return this.name + " in " + this.address;
     }
 
-    public MenuItem getMenuItem() {
-        return this.menuItem;
+    public List<MenuItem> getMenuItems() {
+        return menuItems;
     }
 
-    public void addMenuItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
-    }
-
-    public void addMenuItemById(Long id) {
-        this.addMenuItem(menuItem);
+    public void addMenuItems(List<MenuItem> menuItems) {
+        this.menuItems = menuItems;
     }
 }

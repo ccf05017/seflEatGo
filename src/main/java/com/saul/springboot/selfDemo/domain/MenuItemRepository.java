@@ -1,6 +1,8 @@
 package com.saul.springboot.selfDemo.domain;
 
+import java.util.List;
+
 public interface MenuItemRepository {
 
-    void addMenuItems(Long restaurantId);
+    List<MenuItem> getMenuItemsById(Long id);
 }

@@ -55,4 +55,9 @@
 - [X] Nandos restaurant test에 periperi 메뉴 추가 테스트
 - [X] MenuItem domain 새로 만들기
 - [X] MenuItem 한개 추가하기
-- [ ] MenuItem 여러개 추가하기
+- [X] MenuItem 여러개 추가하기
+- [X] 각 레스토랑별로 다른 메뉴 추가해서 확인하기
+
+* test case에서 나오지 않는 걸 확인하는 방법????
+* getter가 없으면 spring bean이 속성값을 불러올 수 없다
+* long / Long, int / Int 같은 건 구현 방식이 아예 다르다 (data type vs. Class)

@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.interfaces;
 
 import com.saul.springboot.selfDemo.domain.MenuItem;
+import com.saul.springboot.selfDemo.domain.MenuItemRepository;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class RestaurantController {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private MenuItemRepository menuItemRepository;
+
     @GetMapping("/restaurants")
     public List<Restaurant> list() {
 
@@ -29,8 +33,8 @@ public class RestaurantController {
 
         Restaurant restaurant = this.restaurantRepository.findById(id);
 
-        MenuItem menuItem = new MenuItem("periperi");
-        restaurant.addMenuItem(menuItem);
+        List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
+        restaurant.addMenuItems(menuItems);
 
         return restaurant;
     }
