@@ -52,6 +52,7 @@
 ## 20190806
 
 ### Restaurant에 메뉴 추가
-- [ ] Nandos restaurant test에 periperi 메뉴 추가 테스트
-- [ ] MenuItem domain 새로 만들기
-- [ ] 만들어진 domain을 repository 통해서 처리하기
+- [X] Nandos restaurant test에 periperi 메뉴 추가 테스트
+- [X] MenuItem domain 새로 만들기
+- [X] MenuItem 한개 추가하기
+- [ ] MenuItem 여러개 추가하기
