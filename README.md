@@ -73,3 +73,7 @@
 - [X] 위의 application에 추가로 menuitem 정보까지 받아오기
 - [X] restaurant controller detail() test 통과
 - [X] list()에서도 같은 방식 적용하기
+
+### Mock을 활용한 Test Case 작성
+- [ ] RestaurantControllerTests mock 적용
+- [ ] RestaurantServiceTests mock 적용

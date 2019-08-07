@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.services;
 
 import com.saul.springboot.selfDemo.domain.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,11 +11,17 @@ import static org.hamcrest.Matchers.is;
 
 public class RestaurantServiceTests {
 
-    // 강제로 불러온 애들
+    // Test를 위한 의존성들
     RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
     MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
 
-    RestaurantService restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
+    private RestaurantService restaurantService;
+
+    @Before
+    public void setUp() {
+
+        this.restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
+    }
 
     @Test
     public void getRestaurantById() {

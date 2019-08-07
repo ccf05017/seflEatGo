@@ -5,6 +5,7 @@ import com.saul.springboot.selfDemo.domain.MenuItemRepositoryImpl;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import com.saul.springboot.selfDemo.domain.RestaurantRepositoryImpl;
 import com.saul.springboot.selfDemo.services.RestaurantService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class RestaurantControllerTests {
     @Autowired
     MockMvc mvc;
 
+    // 실제 객체 DI를 이용한 테스트 방법
     @SpyBean(RestaurantService.class)
     RestaurantService restaurantService;
 
@@ -33,6 +35,11 @@ public class RestaurantControllerTests {
 
     @SpyBean(MenuItemRepositoryImpl.class)
     MenuItemRepository menuItemRepository;
+
+    @Before
+    public void setUp() {
+
+    }
 
     @Test
     public void list() throws Exception {
