@@ -4,6 +4,7 @@ import com.saul.springboot.selfDemo.domain.MenuItemRepository;
 import com.saul.springboot.selfDemo.domain.MenuItemRepositoryImpl;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import com.saul.springboot.selfDemo.domain.RestaurantRepositoryImpl;
+import com.saul.springboot.selfDemo.services.RestaurantService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class RestaurantControllerTests {
 
     @Autowired
     MockMvc mvc;
+
+    @SpyBean(RestaurantService.class)
+    RestaurantService restaurantService;
 
     @SpyBean(RestaurantRepositoryImpl.class)
     RestaurantRepository restaurantRepository;

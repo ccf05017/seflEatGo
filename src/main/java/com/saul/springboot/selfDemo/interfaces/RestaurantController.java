@@ -43,11 +43,6 @@ public class RestaurantController {
         // Service에서 restaurant, menuitem 모두 갖고 오도록 변경
         Restaurant restaurant = this.restaurantService.getRestaurantById(id);
 
-//        Restaurant restaurant = this.restaurantRepository.findById(id);
-//
-//        List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
-//        restaurant.addMenuItems(menuItems);
-
         return restaurant;
     }
 }

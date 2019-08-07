@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.is;
 
 public class RestaurantServiceTests {
 
+    // 강제로 불러온 애들
     RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
     MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
 
