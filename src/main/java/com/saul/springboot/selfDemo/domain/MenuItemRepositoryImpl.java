@@ -31,4 +31,11 @@ public class MenuItemRepositoryImpl implements MenuItemRepository {
 
         return menuItems;
     }
+
+    @Override
+    public void addMenuItem(long restaurantId, String menuName) {
+
+        MenuItem menuItem = new MenuItem(restaurantId, menuName);
+        menuItems.add(menuItem);
+    }
 }

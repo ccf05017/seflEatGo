@@ -85,3 +85,6 @@
 ### Mock Test 변형
 - [X] RestaurantServiceTest에 Spring runner를 이용한 테스트 적용
 => DI 사용
+
+### MenuItem 기능 개선
+- [X] MenuItem List에 MenuItem 객체 넣는 기능 추가
