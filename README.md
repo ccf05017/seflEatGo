@@ -92,6 +92,6 @@
 ### Restaurant Collection POST endpoint 구현
 - [X] 접속 테스트 (status 201)
 - [X] 헤더 정보 확인 (location)
-- [ ] 내용 정보 확인 (빈 dict)
+- [X] 내용 정보 확인 (빈 dict)
 - [ ] 실제로 객체 추가할 수 있도록 수정
 - [ ] 인자를 받아서 처리할 수 있도록 수정

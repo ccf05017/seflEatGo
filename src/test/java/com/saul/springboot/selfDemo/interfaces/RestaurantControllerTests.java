@@ -166,6 +166,7 @@ public class RestaurantControllerTests {
     public void create() throws Exception {
         mvc.perform(post("/restaurants"))
             .andExpect(status().isCreated())
-            .andExpect(header().string("location", "/restaurants/5555"));
+            .andExpect(header().string("location", "/restaurants/5555"))
+            .andExpect(content().string(containsString("{}")));
     }
 }

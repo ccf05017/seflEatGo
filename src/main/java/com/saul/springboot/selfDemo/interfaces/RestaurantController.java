@@ -38,6 +38,6 @@ public class RestaurantController {
 
         URI location = new URI("/restaurants/5555");
 
-        return ResponseEntity.created(location).body("");
+        return ResponseEntity.created(location).body("{}");
     }
 }
