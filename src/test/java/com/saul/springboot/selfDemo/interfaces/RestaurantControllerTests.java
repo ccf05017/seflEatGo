@@ -19,8 +19,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(RestaurantController.class)
@@ -166,6 +165,7 @@ public class RestaurantControllerTests {
     @Test
     public void create() throws Exception {
         mvc.perform(post("/restaurants"))
-            .andExpect(status().isCreated());
+            .andExpect(status().isCreated())
+            .andExpect(header().string("location", "/restaurants/5555"));
     }
 }
