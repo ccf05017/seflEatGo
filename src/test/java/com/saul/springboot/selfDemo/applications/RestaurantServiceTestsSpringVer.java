@@ -1,10 +1,14 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.domain.*;
+import com.saul.springboot.selfDemo.domain.MenuItem;
+import com.saul.springboot.selfDemo.domain.MenuItemRepository;
+import com.saul.springboot.selfDemo.domain.Restaurant;
+import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,25 +17,27 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 
-public class RestaurantServiceTests {
+@RunWith(SpringRunner.class)
+public class RestaurantServiceTestsSpringVer {
 
-    // Test를 위한 의존성들
-    // 실제 구현으로 테스트
-//    RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
-//    MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
+    // 실제 객체로 테스트
+//    @SpyBean(RestaurantRepositoryImpl.class)
+//    RestaurantRepository restaurantRepository;
+//    @SpyBean(MenuItemRepositoryImpl.class)
+//    MenuItemRepository menuItemRepository;
+//    @SpyBean(RestaurantService.class)
+//    RestaurantService restaurantService;
 
     // Mock으로 테스트
-    @Mock
+    @MockBean
     RestaurantRepository restaurantRepository;
-    @Mock
+    @MockBean
     MenuItemRepository menuItemRepository;
 
     private RestaurantService restaurantService;
 
     @Before
     public void setUp() {
-        // Spring Test를 통해 의존성 주입이 안되기 때문에 추가된 녀석
-        MockitoAnnotations.initMocks(this);
 
         List<Restaurant> restaurants = getMockRestaurants();
 
@@ -47,6 +53,7 @@ public class RestaurantServiceTests {
         given(menuItemRepository.getMenuItemsById(3333L)).willReturn(menuItems);
         given(menuItemRepository.getMenuItemsById(4444L)).willReturn(menuItems2);
 
+        // Spring Test를 통해 의존성 주입이 안되기 때문에 추가된 녀석2
         this.restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
     }
 
