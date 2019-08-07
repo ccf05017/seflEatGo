@@ -33,4 +33,16 @@ public class RestaurantService {
 
         return restaurant;
     }
+
+    public List<Restaurant> getRestaurants() {
+
+        List<Restaurant> restaurants = this.restaurantRepository.findAll();
+
+        for (Restaurant restaurant : restaurants) {
+            List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(restaurant.getId());
+            restaurant.addMenuItems(menuItems);
+        }
+
+        return restaurants;
+    }
 }

@@ -72,4 +72,4 @@
 - [X] DI test를 위한 생성자 추가
 - [X] 위의 application에 추가로 menuitem 정보까지 받아오기
 - [X] restaurant controller detail() test 통과
-- [ ] list()에서도 같은 방식 적용하기
+- [X] list()에서도 같은 방식 적용하기

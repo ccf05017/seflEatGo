@@ -1,9 +1,6 @@
 package com.saul.springboot.selfDemo.interfaces;
 
-import com.saul.springboot.selfDemo.domain.MenuItem;
-import com.saul.springboot.selfDemo.domain.MenuItemRepository;
 import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import com.saul.springboot.selfDemo.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +13,12 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private RestaurantRepository restaurantRepository;
-
-    @Autowired
-    private MenuItemRepository menuItemRepository;
-
-    @Autowired
     private RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
     public List<Restaurant> list() {
 
-        List<Restaurant> restaurants = this.restaurantRepository.findAll();
-
-        for (Restaurant restaurant : restaurants) {
-            List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(restaurant.getId());
-            restaurant.addMenuItems(menuItems);
-        }
+        List<Restaurant> restaurants = this.restaurantService.getRestaurants();
 
         return restaurants;
     }
