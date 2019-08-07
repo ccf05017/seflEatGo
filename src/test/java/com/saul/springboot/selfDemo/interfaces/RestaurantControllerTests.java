@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -164,9 +167,18 @@ public class RestaurantControllerTests {
 
     @Test
     public void create() throws Exception {
-        mvc.perform(post("/restaurants"))
+
+        mvc.perform(post("/restaurants")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"name\": \"sushidama\", \"address\": \"mokdong\"}"))
+
             .andExpect(status().isCreated())
             .andExpect(header().string("location", "/restaurants/5555"))
-            .andExpect(content().string(containsString("{}")));
+            .andExpect(content().string("{}"));
+
+        // 얘가 실행되는지를 중요시 여겨야 함
+        // restaurantService.addRestaurant(restaurant);
+        // 그래서 얘가 나와야 한당
+        verify(restaurantService).addRestaurant(any());
     }
 }

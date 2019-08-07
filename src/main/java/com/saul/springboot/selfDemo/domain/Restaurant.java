@@ -5,11 +5,14 @@ import java.util.List;
 public class Restaurant {
 
     private Long id;
-    private final String name;
+    private String name;
     private String address;
     private MenuItem menuItem;
 
     private List<MenuItem> menuItems;
+
+    public Restaurant() {
+    }
 
     public Restaurant(Long id, String name, String address) {
         this.id = id;
