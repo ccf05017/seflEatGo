@@ -1,9 +1,13 @@
 package com.saul.springboot.selfDemo.services;
 
+import com.saul.springboot.selfDemo.domain.MenuItem;
+import com.saul.springboot.selfDemo.domain.MenuItemRepository;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RestaurantService {
@@ -11,14 +15,22 @@ public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepository;
 
-    public RestaurantService(RestaurantRepository restaurantRepository) {
+    @Autowired
+    MenuItemRepository menuItemRepository;
+
+    public RestaurantService(RestaurantRepository restaurantRepository, MenuItemRepository menuItemRepository) {
 
         this.restaurantRepository = restaurantRepository;
+        this.menuItemRepository = menuItemRepository;
     }
 
     public Restaurant getRestaurantById(Long id) {
 
         Restaurant restaurant = this.restaurantRepository.findById(id);
+
+        List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
+        restaurant.addMenuItems(menuItems);
+
         return restaurant;
     }
 }

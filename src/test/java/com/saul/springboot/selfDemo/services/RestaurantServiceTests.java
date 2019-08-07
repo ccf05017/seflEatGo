@@ -1,9 +1,9 @@
 package com.saul.springboot.selfDemo.services;
 
-import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
-import com.saul.springboot.selfDemo.domain.RestaurantRepositoryImpl;
+import com.saul.springboot.selfDemo.domain.*;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -11,7 +11,9 @@ import static org.hamcrest.Matchers.is;
 public class RestaurantServiceTests {
 
     RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
-    RestaurantService restaurantService = new RestaurantService(restaurantRepository);
+    MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
+
+    RestaurantService restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
 
     @Test
     public void getRestaurantById() {
@@ -25,5 +27,11 @@ public class RestaurantServiceTests {
         assertThat(restaurant.getInfo(), is("Nandos in Seoul"));
 
         // menuitem info 확인
+        List<MenuItem> menuItems = restaurant.getMenuItems();
+        MenuItem menuItem = menuItems.get(0);
+        MenuItem menuItem2 = menuItems.get(1);
+
+        assertThat(menuItem.getMenuName(), is("periperi"));
+        assertThat(menuItem2.getMenuName(), is("francesinha"));
     }
 }
