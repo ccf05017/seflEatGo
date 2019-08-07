@@ -3,24 +3,69 @@ package com.saul.springboot.selfDemo.applications;
 import com.saul.springboot.selfDemo.domain.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.BDDMockito.given;
 
 public class RestaurantServiceTests {
 
     // Test를 위한 의존성들
-    RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
-    MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
+    // 실제 구현으로 테스트
+//    RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
+//    MenuItemRepository menuItemRepository = new MenuItemRepositoryImpl();
+
+    // Mock으로 테스트
+    @Mock
+    RestaurantRepository restaurantRepository;
+    @Mock
+    MenuItemRepository menuItemRepository;
+    @Mock
+    Restaurant restaurant;
 
     private RestaurantService restaurantService;
 
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
+
+        List<Restaurant> restaurants = getMockRestaurants();
+
+        given(restaurantRepository.findAll()).willReturn(restaurants);
+
+        given(restaurantRepository.findById(3333L)).willReturn(restaurants.get(0));
+        given(restaurantRepository.findById(4444L)).willReturn(restaurants.get(1));
+        given(restaurantRepository.findById(5555L)).willReturn(restaurants.get(2));
+
+        List<MenuItem> menuItems =  getMockMenuItems(3333L, "periperi", "francesinha");
+        List<MenuItem> menuItems2 = getMockMenuItems(4444L, "pulledfork", "slider");
+
+        given(menuItemRepository.getMenuItemsById(3333L)).willReturn(menuItems);
+        given(menuItemRepository.getMenuItemsById(4444L)).willReturn(menuItems2);
 
         this.restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
+    }
+
+    private List<MenuItem> getMockMenuItems(long restaurantId, String menu1, String menu2) {
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItem(restaurantId, menu1));
+        menuItems.add(new MenuItem(restaurantId, menu2));
+
+        return menuItems;
+    }
+
+    private List<Restaurant> getMockRestaurants() {
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(new Restaurant(3333L, "Nandos", "Seoul"));
+        restaurants.add(new Restaurant(4444L, "Manimal", "Itaewon"));
+        restaurants.add(new Restaurant(5555L, "Bonasera", "Gangnam"));
+
+        return restaurants;
     }
 
     @Test

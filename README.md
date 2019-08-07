@@ -76,4 +76,8 @@
 
 ### Mock을 활용한 Test Case 작성
 - [X] RestaurantControllerTests mock 적용
-- [ ] RestaurantServiceTests mock 적용
+- [X] RestaurantServiceTests mock 적용
+
+* Mock 객체를 통해 테스트 간 의존성 감소
+* 근데 테스트용 데이터가 도대체 관리가 안되고 여기저기서 똑같은 게 선언됨
+* 이걸 리팩토링을 해야될까..?

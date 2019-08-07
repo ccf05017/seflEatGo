@@ -65,10 +65,10 @@ public class RestaurantControllerTests {
     }
 
     // Mock 의존성 설정
-    private List<MenuItem> getMenuItems(long l, String periperi, String francesinha) {
+    private List<MenuItem> getMenuItems(long restaurantId, String menu1, String menu2) {
         List<MenuItem> menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem(l, periperi));
-        menuItems.add(new MenuItem(l, francesinha));
+        menuItems.add(new MenuItem(restaurantId, menu1));
+        menuItems.add(new MenuItem(restaurantId, menu2));
         return menuItems;
     }
 
