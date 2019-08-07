@@ -1,20 +1,22 @@
 package com.saul.springboot.selfDemo.interfaces;
 
-import com.saul.springboot.selfDemo.domain.MenuItemRepository;
-import com.saul.springboot.selfDemo.domain.MenuItemRepositoryImpl;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
-import com.saul.springboot.selfDemo.domain.RestaurantRepositoryImpl;
-import com.saul.springboot.selfDemo.services.RestaurantService;
+import com.saul.springboot.selfDemo.applications.RestaurantService;
+import com.saul.springboot.selfDemo.domain.MenuItem;
+import com.saul.springboot.selfDemo.domain.Restaurant;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -27,20 +29,58 @@ public class RestaurantControllerTests {
     MockMvc mvc;
 
     // 실제 객체 DI를 이용한 테스트 방법
-    @SpyBean(RestaurantService.class)
+//    @SpyBean(RestaurantService.class)
+//    RestaurantService restaurantService;
+//
+//    @SpyBean(RestaurantRepositoryImpl.class)
+//    RestaurantRepository restaurantRepository;
+//
+//    @SpyBean(MenuItemRepositoryImpl.class)
+//    MenuItemRepository menuItemRepository;
+
+    // Mock 객체를 이용한 DI 테스트
+    // 실제 환경과 다르게 자유롭게 테스트 할 수 있음
+    // 대신 Mock 객체 넣느라 아주아주아주아주아주 귀찮아질 수 있음
+    @MockBean
     RestaurantService restaurantService;
-
-    @SpyBean(RestaurantRepositoryImpl.class)
-    RestaurantRepository restaurantRepository;
-
-    @SpyBean(MenuItemRepositoryImpl.class)
-    MenuItemRepository menuItemRepository;
 
     @Before
     public void setUp() {
+        List<Restaurant> restaurants = getRestaurants();
 
+        List<MenuItem> menuItems = getMenuItems(3333L, "periperi", "francesinha");
+
+        List<MenuItem> menuItems2 = getMenuItems(4444L, "pulledfork", "slider");
+
+        restaurants.get(0).addMenuItems(menuItems);
+        restaurants.get(1).addMenuItems(menuItems2);
+
+        // list용 설정
+        given(restaurantService.getRestaurants()).willReturn(restaurants);
+
+        // detail용 설정
+        given(restaurantService.getRestaurantById(3333L)).willReturn(restaurants.get(0));
+        given(restaurantService.getRestaurantById(4444L)).willReturn(restaurants.get(1));
+        given(restaurantService.getRestaurantById(5555L)).willReturn(restaurants.get(2));
     }
 
+    // Mock 의존성 설정
+    private List<MenuItem> getMenuItems(long l, String periperi, String francesinha) {
+        List<MenuItem> menuItems = new ArrayList<>();
+        menuItems.add(new MenuItem(l, periperi));
+        menuItems.add(new MenuItem(l, francesinha));
+        return menuItems;
+    }
+
+    private List<Restaurant> getRestaurants() {
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(new Restaurant(3333L, "Nandos", "Seoul"));
+        restaurants.add(new Restaurant(4444L, "Manimal", "Itaewon"));
+        restaurants.add(new Restaurant(5555L, "Bonasera", "Gangnam"));
+        return restaurants;
+    }
+
+    // Test Code
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants"))

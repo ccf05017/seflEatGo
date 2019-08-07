@@ -1,4 +1,4 @@
-package com.saul.springboot.selfDemo.services;
+package com.saul.springboot.selfDemo.applications;
 
 import com.saul.springboot.selfDemo.domain.MenuItem;
 import com.saul.springboot.selfDemo.domain.MenuItemRepository;
@@ -24,16 +24,6 @@ public class RestaurantService {
         this.menuItemRepository = menuItemRepository;
     }
 
-    public Restaurant getRestaurantById(Long id) {
-
-        Restaurant restaurant = this.restaurantRepository.findById(id);
-
-        List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
-        restaurant.addMenuItems(menuItems);
-
-        return restaurant;
-    }
-
     public List<Restaurant> getRestaurants() {
 
         List<Restaurant> restaurants = this.restaurantRepository.findAll();
@@ -44,5 +34,15 @@ public class RestaurantService {
         }
 
         return restaurants;
+    }
+
+    public Restaurant getRestaurantById(Long id) {
+
+        Restaurant restaurant = this.restaurantRepository.findById(id);
+
+        List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
+        restaurant.addMenuItems(menuItems);
+
+        return restaurant;
     }
 }
