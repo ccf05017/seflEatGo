@@ -66,8 +66,9 @@
 ## 20190807
 
 ### Application Layer 추가
-- [ ] detail()에서 application을 통해 restaurant 정보 받아오기
+- [X] detail()에서 application을 통해 restaurant 정보 받아오기
 - [X] application layer 구현
-- [ ] application layer test 구현
+- [X] application layer test 구현
+- [X] DI test를 위한 생성자 추가
 - [ ] 위의 application에 추가로 menuitem 정보까지 받아오기
 - [ ] list()에서도 같은 방식 적용하기
