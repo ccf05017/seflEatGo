@@ -88,3 +88,10 @@
 
 ### MenuItem 기능 개선
 - [X] MenuItem List에 MenuItem 객체 넣는 기능 추가
+
+### Restaurant Collection POST endpoint 구현
+- [X] 접속 테스트 (status 201)
+- [ ] 헤더 정보 확인 (location)
+- [ ] 내용 정보 확인 (빈 dict)
+- [ ] 실제로 객체 추가할 수 있도록 수정
+- [ ] 인자를 받아서 처리할 수 있도록 수정

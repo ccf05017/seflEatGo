@@ -3,10 +3,11 @@ package com.saul.springboot.selfDemo.interfaces;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.applications.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -30,5 +31,13 @@ public class RestaurantController {
         Restaurant restaurant = this.restaurantService.getRestaurantById(id);
 
         return restaurant;
+    }
+
+    @PostMapping("/restaurants")
+    public ResponseEntity<?> create() throws URISyntaxException {
+
+        URI location = new URI("/restaurants/5555");
+
+        return ResponseEntity.created(location).body("");
     }
 }

@@ -18,6 +18,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -160,5 +161,11 @@ public class RestaurantControllerTests {
             .andExpect(content().string(
                     containsString("\"id\":5555")
             ));
+    }
+
+    @Test
+    public void create() throws Exception {
+        mvc.perform(post("/restaurants"))
+            .andExpect(status().isCreated());
     }
 }
