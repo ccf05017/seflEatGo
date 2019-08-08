@@ -110,4 +110,12 @@ public class RestaurantServiceTests {
         assertThat(menuItem.getMenuName(), is("periperi"));
         assertThat(menuItem2.getMenuName(), is("francesinha"));
     }
+
+    @Test
+    public void addRestaurant() {
+        Restaurant restaurant = this.restaurantService.addRestaurant(
+                new Restaurant("sushidama", "mokdong"));
+
+        assertThat(restaurant.getId(), is(6666L));
+    }
 }

@@ -98,3 +98,12 @@
 
 * POST 관련 도구 다시 한번 확인할 것(<- 여전히 미숙)
 * 항상 돌아다니는 data type에 대해 고민할 것..
+
+## 20180808
+
+## RestaurantService의 addRestaurant() 구현
+- [X] addRestaurant을 통해 추가 후 restaurant 반환
+- [X] 실제 Repository에 추가되도록 구현
+
+* 실제로 ID 늘어나도록 구현 시도
+* 내일 싹 다 지우고 다시 재구현 시도(애 울어서 제대로 못함..)
