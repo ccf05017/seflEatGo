@@ -1,7 +1,7 @@
 package com.saul.springboot.selfDemo.interfaces;
 
-import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.applications.RestaurantService;
+import com.saul.springboot.selfDemo.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,12 +38,11 @@ public class RestaurantController {
 
         String name = resource.getName();
         String address = resource.getAddress();
-
         Restaurant restaurant = new Restaurant(5555L, name, address);
-        restaurantService.addRestaurant(restaurant);
 
-        URI location = new URI("/restaurants/5555");
+        URI uri = new URI("/restaurants/" + restaurant.getId());
+        this.restaurantService.addRestaurant(restaurant);
 
-        return ResponseEntity.created(location).body("{}");
+        return ResponseEntity.created(uri).body("{}");
     }
 }

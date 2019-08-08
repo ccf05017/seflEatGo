@@ -163,22 +163,23 @@ public class RestaurantControllerTests {
             .andExpect(content().string(
                     containsString("\"id\":5555")
             ));
+
     }
 
     @Test
     public void create() throws Exception {
-
+        // Controller 요청이 제대로 돌아가는지 확인하는 test
         mvc.perform(post("/restaurants")
             .contentType(MediaType.APPLICATION_JSON)
             .content("{\"name\": \"sushidama\", \"address\": \"mokdong\"}"))
-
             .andExpect(status().isCreated())
             .andExpect(header().string("location", "/restaurants/5555"))
-            .andExpect(content().string("{}"));
+            .andExpect(content().string(containsString("{}")));
 
-        // 얘가 실행되는지를 중요시 여겨야 함
-        // restaurantService.addRestaurant(restaurant);
-        // 그래서 얘가 나와야 한당
+        // 암모턴 뭔가를 넣어서 restaurantService mock 객체에서 addRestaurant()을 실행하는지 확인!
+        // 실제 저장하는지 안하는지는 controller가 신경 쓸 일이 아니다.
+        // restaurantService가 알아서 해줄거니까 여기서는 저 함수가 제대로 실행되는지만 보증해주면 됨
         verify(restaurantService).addRestaurant(any());
     }
 }
+
