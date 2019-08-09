@@ -189,6 +189,9 @@ public class RestaurantControllerTests {
         mvc.perform(delete("/restaurants/3333"))
             .andExpect(status().isNoContent())
             .andExpect(header().string("deleteTarget", "3333"));
+
+        verify(restaurantService).deleteRestaurant(any());
+
     }
 }
 

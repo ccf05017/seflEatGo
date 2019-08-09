@@ -45,6 +45,8 @@ public class RestaurantController {
     @DeleteMapping("/restaurants/{id}")
     public ResponseEntity<?> remove(@PathVariable Long id) {
 
+        this.restaurantService.deleteRestaurant(id);
+
         return ResponseEntity.noContent().header("deleteTarget", String.valueOf(id)).build();
     }
 }

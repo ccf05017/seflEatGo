@@ -113,5 +113,5 @@
 ### Restaurant Collection DELETE endpoint 구현
 - [X] 접속 테스트 (status 204)
 - [X] id 인자 받을 수 있도록 구현
-- [ ] service layer 구현
-- [ ] 실제 repository layer 구현
+- [X] service layer 구현
+- [X] 실제 repository layer 구현

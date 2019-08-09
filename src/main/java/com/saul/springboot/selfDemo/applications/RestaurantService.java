@@ -59,4 +59,8 @@ public class RestaurantService {
 
         return restaurant;
     }
+
+    public void deleteRestaurant(Long id) {
+        this.restaurantRepository.deleteRestaurant(id);
+    }
 }

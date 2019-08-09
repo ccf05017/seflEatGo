@@ -24,4 +24,17 @@ public class RestaurantRepositoryImplTests {
 
         assertThat(afterSize - beforeSize, is(1));
     }
+
+    @Test
+    public void deleteRestaurant() {
+        RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
+
+        int beforeSize = restaurantRepository.findAll().size();
+
+        restaurantRepository.deleteRestaurant(3333L);
+
+        int afterSize = restaurantRepository.findAll().size();
+
+        assertThat(beforeSize - afterSize, is(1));
+    }
 }

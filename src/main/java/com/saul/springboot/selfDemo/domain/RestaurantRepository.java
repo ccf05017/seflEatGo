@@ -9,4 +9,6 @@ public interface RestaurantRepository {
     public Restaurant findById(Long id);
 
     void addRestaurant(Restaurant restaurant);
+
+    void deleteRestaurant(Long id);
 }

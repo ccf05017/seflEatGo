@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class RestaurantRepositoryImpl implements RestaurantRepository {
@@ -34,5 +35,14 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public void addRestaurant(Restaurant restaurant) {
         this.restaurants.add(restaurant);
+    }
+
+    @Override
+    public void deleteRestaurant(Long id) {
+        List<Restaurant> restaurants = this.restaurants.stream()
+                .filter(restaurant -> !restaurant.getId().equals(id))
+                .collect(Collectors.toList());
+
+        this.restaurants = restaurants;
     }
 }
