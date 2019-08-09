@@ -41,4 +41,10 @@ public class RestaurantController {
 
         return ResponseEntity.created(uri).body("{}");
     }
+
+    @DeleteMapping("/restaurants/{id}")
+    public ResponseEntity<?> remove(@PathVariable Long id) {
+
+        return ResponseEntity.noContent().header("deleteTarget", String.valueOf(id)).build();
+    }
 }

@@ -20,8 +20,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -186,9 +185,10 @@ public class RestaurantControllerTests {
     }
 
     @Test
-    public void delete() {
+    public void remove() throws Exception {
         mvc.perform(delete("/restaurants/3333"))
-                .andExpect(status().isNoContent());
+            .andExpect(status().isNoContent())
+            .andExpect(header().string("deleteTarget", "3333"));
     }
 }
 
