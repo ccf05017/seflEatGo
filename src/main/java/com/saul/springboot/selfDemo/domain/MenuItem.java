@@ -1,7 +1,13 @@
 package com.saul.springboot.selfDemo.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class MenuItem {
 
+    @Id
+    private Long id;
     private Long restaurantId;
     private String menuName;
 

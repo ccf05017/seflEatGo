@@ -115,3 +115,10 @@
 - [X] id 인자 받을 수 있도록 구현
 - [X] service layer 구현
 - [X] 실제 repository layer 구현
+
+## 20190810
+
+### JPA 적용해보자
+- [X] 의존성 추가
+- [ ] 알아서 디버깅해보자!
+* Repository 구현체들은 거의 사라질 것

@@ -48,6 +48,7 @@ public class RestaurantService {
 
     public Restaurant saveRestaurant(Restaurant resource) {
 
+        // 이 로직을 사실 repositoryImpl로 넘기는 게 좋다.
         String name = resource.getName();
         String address = resource.getAddress();
 
