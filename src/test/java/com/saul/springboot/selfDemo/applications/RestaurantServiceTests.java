@@ -113,9 +113,13 @@ public class RestaurantServiceTests {
 
     @Test
     public void addRestaurant() {
-        Restaurant restaurant = this.restaurantService.addRestaurant(
-                new Restaurant("sushidama", "mokdong"));
 
-        assertThat(restaurant.getId(), is(6666L));
+        Restaurant restaurant = new Restaurant(5555L, "sushidama", "mokdong");
+        Restaurant saved = this.restaurantService.saveRestaurant(restaurant);
+
+        assertThat(saved.getId(), is(5555L));
+        assertThat(saved.getName(), is("sushidama"));
+        assertThat(saved.getAddress(), is("mokdong"));
+
     }
 }

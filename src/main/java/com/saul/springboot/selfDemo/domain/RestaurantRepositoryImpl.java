@@ -32,11 +32,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public Restaurant save(Restaurant restaurant) {
-
-        restaurant.setId(6666L);
+    public void addRestaurant(Restaurant restaurant) {
         this.restaurants.add(restaurant);
-
-        return restaurant;
     }
 }

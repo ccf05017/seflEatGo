@@ -52,7 +52,6 @@ public class RestaurantControllerTests {
         List<Restaurant> restaurants = getRestaurants();
 
         List<MenuItem> menuItems = getMenuItems(3333L, "periperi", "francesinha");
-
         List<MenuItem> menuItems2 = getMenuItems(4444L, "pulledfork", "slider");
 
         restaurants.get(0).addMenuItems(menuItems);
@@ -65,6 +64,10 @@ public class RestaurantControllerTests {
         given(restaurantService.getRestaurantById(3333L)).willReturn(restaurants.get(0));
         given(restaurantService.getRestaurantById(4444L)).willReturn(restaurants.get(1));
         given(restaurantService.getRestaurantById(5555L)).willReturn(restaurants.get(2));
+
+        // create용 설정
+        Restaurant restaurant = new Restaurant(5555L, "sushidama", "mokdong");
+        given(restaurantService.saveRestaurant(any())).willReturn(restaurant);
     }
 
     // Mock 의존성 설정
@@ -179,7 +182,7 @@ public class RestaurantControllerTests {
         // 암모턴 뭔가를 넣어서 restaurantService mock 객체에서 addRestaurant()을 실행하는지 확인!
         // 실제 저장하는지 안하는지는 controller가 신경 쓸 일이 아니다.
         // restaurantService가 알아서 해줄거니까 여기서는 저 함수가 제대로 실행되는지만 보증해주면 됨
-        verify(restaurantService).addRestaurant(any());
+        verify(restaurantService).saveRestaurant(any());
     }
 }
 

@@ -25,12 +25,12 @@ public class Restaurant {
         this.address = address;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

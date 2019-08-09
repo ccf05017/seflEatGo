@@ -11,17 +11,17 @@ import static org.hamcrest.Matchers.is;
 public class RestaurantRepositoryImplTests {
 
     @Test
-    public void save() {
+    public void addRestaurant() {
+
         RestaurantRepository restaurantRepository = new RestaurantRepositoryImpl();
 
-        int beforeCount = restaurantRepository.findAll().size();
+        int beforeSize = restaurantRepository.findAll().size();
 
-        Restaurant restaurant = new Restaurant("sushidama", "mokdong");
-        Restaurant saved = restaurantRepository.save(restaurant);
+        Restaurant restaurant = new Restaurant(5555L, "sushidama", "mokdong");
+        restaurantRepository.addRestaurant(restaurant);
 
-        int afterCount = restaurantRepository.findAll().size();
+        int afterSize = restaurantRepository.findAll().size();
 
-        assertThat(saved.getId(), is(6666L));
-        assertThat(afterCount-beforeCount, is(1));
+        assertThat(afterSize - beforeSize, is(1));
     }
 }

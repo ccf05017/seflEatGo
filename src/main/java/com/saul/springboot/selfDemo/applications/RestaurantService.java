@@ -46,10 +46,17 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public Restaurant addRestaurant(Restaurant restaurant) {
+    public Restaurant saveRestaurant(Restaurant resource) {
 
-        Restaurant saved = this.restaurantRepository.save(restaurant);
+        String name = resource.getName();
+        String address = resource.getAddress();
 
-        return saved;
+        Restaurant restaurant = new Restaurant(name, address);
+        // 실제로 ID가 늘어나도록 변경해볼 것
+        restaurant.setId(5555L);
+
+        this.restaurantRepository.addRestaurant(restaurant);
+
+        return restaurant;
     }
 }
