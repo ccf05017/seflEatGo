@@ -184,5 +184,11 @@ public class RestaurantControllerTests {
         // restaurantService가 알아서 해줄거니까 여기서는 저 함수가 제대로 실행되는지만 보증해주면 됨
         verify(restaurantService).saveRestaurant(any());
     }
+
+    @Test
+    public void delete() {
+        mvc.perform(delete("/restaurants/3333"))
+                .andExpect(status().isNoContent());
+    }
 }
 

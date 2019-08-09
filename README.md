@@ -101,9 +101,17 @@
 
 ## 20180808
 
-## RestaurantService의 addRestaurant() 구현
+### RestaurantService의 addRestaurant() 구현
 - [X] addRestaurant을 통해 추가 후 restaurant 반환
 - [X] 실제 Repository에 추가되도록 구현
 
 * 실제로 ID 늘어나도록 구현 시도
 * 내일 싹 다 지우고 다시 재구현 시도(애 울어서 제대로 못함..)
+
+## 20180809
+
+### Restaurant Collection DELETE endpoint 구현
+- [ ] 접속 테스트 (status 204)
+- [ ] id 인자 받을 수 있도록 구현
+- [ ] service layer 구현
+- [ ] 실제 repository layer 구현
