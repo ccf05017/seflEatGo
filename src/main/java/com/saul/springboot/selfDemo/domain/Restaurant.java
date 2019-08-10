@@ -1,21 +1,24 @@
 package com.saul.springboot.selfDemo.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Restaurant {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
     private String address;
-
+    
     @Transient
-    private List<MenuItem> menuItems;
+    private List<ItemMenu> itemMenus = new ArrayList<>();
 
     public Restaurant() {
     }
@@ -32,30 +35,40 @@ public class Restaurant {
     }
 
     public Long getId() {
+
         return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     public String getName() {
+
         return this.name;
     }
 
     public String getAddress() {
+
         return this.address;
     }
 
-    public String getInfo() {
+    public String getInformation() {
+
         return this.name + " in " + this.address;
     }
 
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
+    public List<ItemMenu> getItemMenus() {
+        return itemMenus;
     }
 
-    public void addMenuItems(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
+    public void addItemMenu(ItemMenu itemMenu) {
+        itemMenus.add(itemMenu);
+    }
+
+    public void setItemMenus(List<ItemMenu> itemMenus) {
+        for (ItemMenu itemMenu : itemMenus) {
+            addItemMenu(itemMenu);
+        }
     }
 }
