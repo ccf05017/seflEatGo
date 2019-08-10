@@ -1,14 +1,20 @@
 package com.saul.springboot.selfDemo.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.List;
 
+@Entity
 public class Restaurant {
 
+    @Id
     private Long id;
+
     private String name;
     private String address;
-    private MenuItem menuItem;
 
+    @Transient
     private List<MenuItem> menuItems;
 
     public Restaurant() {

@@ -1,14 +1,15 @@
 package com.saul.springboot.selfDemo.domain;
 
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.List;
+import java.util.Optional;
 
-public interface RestaurantRepository {
+public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
-    public List<Restaurant> findAll();
+    List<Restaurant> findAll();
 
-    public Restaurant findById(Long id);
+    Optional<Restaurant> findById(Long id);
 
-    void addRestaurant(Restaurant restaurant);
-
-    void deleteRestaurant(Long id);
+    Restaurant save(Restaurant restaurant);
 }

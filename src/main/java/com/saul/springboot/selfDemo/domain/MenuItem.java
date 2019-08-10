@@ -8,6 +8,7 @@ public class MenuItem {
 
     @Id
     private Long id;
+
     private Long restaurantId;
     private String menuName;
 
@@ -15,7 +16,6 @@ public class MenuItem {
         this.restaurantId = restaurantId;
         this.menuName = menuName;
     }
-
 
     public String getMenuName() {
         return this.menuName;

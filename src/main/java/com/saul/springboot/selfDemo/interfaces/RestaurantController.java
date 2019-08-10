@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class RestaurantController {
@@ -25,10 +26,10 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants/{id}")
-    public Restaurant detail(@PathVariable Long id) {
+    public Optional<Restaurant> detail(@PathVariable Long id) {
 
         // Service에서 restaurant, menuitem 모두 갖고 오도록 변경
-        Restaurant restaurant = this.restaurantService.getRestaurantById(id);
+        Optional<Restaurant> restaurant = this.restaurantService.getRestaurantById(id);
 
         return restaurant;
     }
@@ -40,13 +41,5 @@ public class RestaurantController {
         URI uri = new URI("/restaurants/" + saved.getId());
 
         return ResponseEntity.created(uri).body("{}");
-    }
-
-    @DeleteMapping("/restaurants/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
-
-        this.restaurantService.deleteRestaurant(id);
-
-        return ResponseEntity.noContent().header("deleteTarget", String.valueOf(id)).build();
     }
 }

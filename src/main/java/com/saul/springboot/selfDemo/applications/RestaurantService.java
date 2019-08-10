@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -36,12 +37,12 @@ public class RestaurantService {
         return restaurants;
     }
 
-    public Restaurant getRestaurantById(Long id) {
+    public Optional<Restaurant> getRestaurantById(Long id) {
 
-        Restaurant restaurant = this.restaurantRepository.findById(id);
+        Optional<Restaurant> restaurant = this.restaurantRepository.findById(id);
 
         List<MenuItem> menuItems = this.menuItemRepository.getMenuItemsById(id);
-        restaurant.addMenuItems(menuItems);
+//        restaurant.addMenuItems(menuItems);
 
         return restaurant;
     }
@@ -56,12 +57,8 @@ public class RestaurantService {
         // 실제로 ID가 늘어나도록 변경해볼 것
         restaurant.setId(5555L);
 
-        this.restaurantRepository.addRestaurant(restaurant);
+        this.restaurantRepository.save(restaurant);
 
         return restaurant;
-    }
-
-    public void deleteRestaurant(Long id) {
-        this.restaurantRepository.deleteRestaurant(id);
     }
 }

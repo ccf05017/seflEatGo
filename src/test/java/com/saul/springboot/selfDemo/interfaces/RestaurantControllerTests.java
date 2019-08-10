@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,9 +61,9 @@ public class RestaurantControllerTests {
         given(restaurantService.getRestaurants()).willReturn(restaurants);
 
         // detail용 설정
-        given(restaurantService.getRestaurantById(3333L)).willReturn(restaurants.get(0));
-        given(restaurantService.getRestaurantById(4444L)).willReturn(restaurants.get(1));
-        given(restaurantService.getRestaurantById(5555L)).willReturn(restaurants.get(2));
+        given(restaurantService.getRestaurantById(3333L)).willReturn(Optional.ofNullable(restaurants.get(0)));
+        given(restaurantService.getRestaurantById(4444L)).willReturn(Optional.ofNullable(restaurants.get(1)));
+        given(restaurantService.getRestaurantById(5555L)).willReturn(Optional.ofNullable(restaurants.get(2)));
 
         // create용 설정
         Restaurant restaurant = new Restaurant(5555L, "sushidama", "mokdong");
@@ -182,16 +183,6 @@ public class RestaurantControllerTests {
         // 실제 저장하는지 안하는지는 controller가 신경 쓸 일이 아니다.
         // restaurantService가 알아서 해줄거니까 여기서는 저 함수가 제대로 실행되는지만 보증해주면 됨
         verify(restaurantService).saveRestaurant(any());
-    }
-
-    @Test
-    public void remove() throws Exception {
-        mvc.perform(delete("/restaurants/3333"))
-            .andExpect(status().isNoContent())
-            .andExpect(header().string("deleteTarget", "3333"));
-
-        verify(restaurantService).deleteRestaurant(any());
-
     }
 }
 
