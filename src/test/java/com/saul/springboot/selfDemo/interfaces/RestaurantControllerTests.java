@@ -88,6 +88,10 @@ public class RestaurantControllerTests {
 
     @Test
     public void create() throws Exception {
+        Restaurant restaurant = new Restaurant(1234L, "Beryong", "Seoul");
+
+        given(restaurantService.addRestaurant(any())).willReturn(restaurant);
+
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\": \"Beryong\", \"address\": \"Seoul\"}"))
