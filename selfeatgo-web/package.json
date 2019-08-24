@@ -1,0 +1,17 @@
+{
+  "name": "selfeatgo-web",
+  "version": "1.0.0",
+  "description": "simple front-end for fastcampus lesson",
+  "main": "index.html",
+  "scripts": {
+    "start": "webpack-dev-server --port 3000",
+    "test": "jest"
+  },
+  "author": "poppo",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
