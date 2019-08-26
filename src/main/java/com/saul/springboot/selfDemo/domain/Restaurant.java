@@ -1,5 +1,9 @@
 package com.saul.springboot.selfDemo.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Restaurant {
 
     @Id
@@ -20,9 +27,6 @@ public class Restaurant {
     @Transient
     private List<ItemMenu> itemMenus = new ArrayList<>();
 
-    public Restaurant() {
-    }
-
     public Restaurant(String name, String address) {
         this.name = name;
         this.address = address;
@@ -34,32 +38,9 @@ public class Restaurant {
         this.address = address;
     }
 
-    public Long getId() {
-
-        return this.id;
-    }
-
-    public String getName() {
-
-        return this.name;
-    }
-
-    public String getAddress() {
-
-        return this.address;
-    }
-
-    public List<ItemMenu> getItemMenus() {
-        return itemMenus;
-    }
-
     public String getInformation() {
 
         return this.name + " in " + this.address;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void addItemMenu(ItemMenu itemMenu) {

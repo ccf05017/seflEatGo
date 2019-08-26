@@ -151,6 +151,6 @@
   (이유 확인해볼 것) 
 
 ### Lombok 적용
-- [ ] Restaurant domain getter / setter 적용
-- [ ] Restaurant domain constructor 적용
+- [x] Restaurant domain getter / setter 적용 <- setter는 필요 없어서 삭제
+- [x] Restaurant domain constructor 적용
 - [ ] Restaurant domain builder 패턴 적용
