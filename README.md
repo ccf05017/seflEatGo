@@ -137,3 +137,15 @@
 ### 강의 재시작
 - 최신 강의 내용 따라해볼 것
 - 프론트엔드는 일단 여기선 webpack으로 대충 하고 넘어간다
+
+## 20190826
+### Restaurant Domain Update
+- [x] PATCH /restaurants/{id} endpoint status ok
+- [x] PATCH /restaurants/{id} endpoint 속성값 잘 받는지 확인
+- [x] PATCH /restaurants/{id} endpoint restaurantService 로 책임 이관
+- [x] restaurantService 에서 적용 대상 잘 찾아오는지 확인
+- [x] restaurantService 에서 찾아온 대상의 정보가 알맞게 바뀌는지 확인
+
+* update 에서는 명시적인 save() 처리가 아닌 @Transactional 활용
+* setter 를 여러개 부르기 보다는 한번에 처리할 수 있는 메서드를 추가로 생성
+  (이유 확인해볼 것) 

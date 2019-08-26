@@ -19,8 +19,7 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -101,5 +100,19 @@ public class RestaurantControllerTests {
                 .andExpect(content().string("{}"));
 
         verify(restaurantService).addRestaurant(any());
+    }
+
+    @Test
+    public void update() throws Exception {
+        mvc.perform(patch("/restaurants/1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"name\": \"modified\", \"address\": \"space\"}"))
+
+            .andExpect(status().isOk());
+
+        // 이렇게 하면 무조건 돌겠지
+//        verify(restaurantService).updateRestaurant(any(), any());
+        // 실제 인자를 잘 받는지 테스트를 하자
+        verify(restaurantService).updateRestaurant(1L, "modified", "space");
     }
 }

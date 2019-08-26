@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -88,5 +90,18 @@ public class RestaurantServiceTests {
         Restaurant created = restaurantService.addRestaurant(restaurant);
 
         Assert.assertThat(created.getId(), CoreMatchers.is(1234L));
+    }
+
+    @Test
+    public void updateRestaurant() {
+
+        Restaurant restaurant = new Restaurant(1L,"sushidama", "mokdong");
+        given(restaurantRepository.findById(1L)).willReturn(Optional.of(restaurant));
+
+        restaurantService.updateRestaurant(1L, "blabla grill", "seoul");
+
+        assertThat(restaurant.getId(), is(1L));
+        assertThat(restaurant.getName(), is("blabla grill"));
+
     }
 }
