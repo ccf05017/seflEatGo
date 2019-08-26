@@ -104,13 +104,25 @@ public class RestaurantControllerTests {
 
     @Test
     public void create() throws Exception {
-        Restaurant restaurant = Restaurant.builder()
-            .id(1234L)
-            .name("Beryong")
-            .address("Seoul")
-            .build();
+        // 가짜 데이터로 하드 코딩
+//        Restaurant restaurant = Restaurant.builder()
+//            .id(1234L)
+//            .name("Beryong")
+//            .address("Seoul")
+//            .build();
+//
+//        given(restaurantService.addRestaurant(any())).willReturn(restaurant);
 
-        given(restaurantService.addRestaurant(any())).willReturn(restaurant);
+        // invocation 을 이용한 실제 데이터로 테스트
+        given(restaurantService.addRestaurant(any())).will(invocation -> {
+            Restaurant restaurant = invocation.getArgument(0);
+
+            return Restaurant.builder()
+                    .id(1234L)
+                    .name(restaurant.getName())
+                    .address(restaurant.getAddress())
+                    .build();
+        });
 
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
