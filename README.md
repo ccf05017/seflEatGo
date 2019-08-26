@@ -153,4 +153,10 @@
 ### Lombok 적용
 - [x] Restaurant domain getter / setter 적용 <- setter는 필요 없어서 삭제
 - [x] Restaurant domain constructor 적용
-- [ ] Restaurant domain builder 패턴 적용
+- [x] Restaurant domain builder 패턴 적용
+- [ ] ItemMenu domain builder 패턴 적용
+
+* Restaurant Domain 의 itemMenus column setter 변경
+* Array(또는 객체 타입)의 setter 를 사용할 때는 참조 타입에 꼭 유의
+* 안 지키고 하면 함수 실행 뒤의 결과값이 뒤죽박죽이 될 수 있음
+* 결론 => 오브젝트 타입의 setter 는 복사본을 사용하자!

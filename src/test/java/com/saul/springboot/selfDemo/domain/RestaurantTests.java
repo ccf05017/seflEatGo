@@ -8,7 +8,11 @@ public class RestaurantTests {
 
     @Test
     public void creation() {
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip")
+            .address("Seoul")
+            .build();
 
         Assert.assertThat(restaurant.getId(), CoreMatchers.is(1004L));
         Assert.assertThat(restaurant.getName(), CoreMatchers.is("Bob zip"));
@@ -17,7 +21,11 @@ public class RestaurantTests {
 
     @Test
     public void information() {
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip")
+            .address("Seoul")
+            .build();
 
         Assert.assertThat(restaurant.getInformation(), CoreMatchers.is("Bob zip in Seoul"));
     }

@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -38,7 +39,11 @@ public class RestaurantControllerTests {
     @Test
     public void list() throws Exception {
         List<Restaurant> restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant(1004L, "Bob zip2", "Seoul"));
+        restaurants.add(Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip2")
+            .address("Seoul")
+            .build());
 
         given(restaurantService.getRestaurants()).willReturn(restaurants);
 
@@ -55,10 +60,20 @@ public class RestaurantControllerTests {
     @Test
     public void detail() throws Exception {
 
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
-        Restaurant restaurant2 = new Restaurant(2020L, "PeriPeri Food", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip")
+            .address("Seoul")
+            .build();
+        Restaurant restaurant2 = Restaurant.builder()
+            .id(2020L)
+            .name("PeriPeri Food")
+            .address("Seoul")
+            .build();
 
-        restaurant.addItemMenu(new ItemMenu("Kimchi"));
+//        restaurant.addItemMenu(new ItemMenu("Kimchi"));
+
+        restaurant.setItemMenus(Arrays.asList(new ItemMenu("Kimchi")));
 
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
         given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
@@ -87,7 +102,11 @@ public class RestaurantControllerTests {
 
     @Test
     public void create() throws Exception {
-        Restaurant restaurant = new Restaurant(1234L, "Beryong", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1234L)
+            .name("Beryong")
+            .address("Seoul")
+            .build();
 
         given(restaurantService.addRestaurant(any())).willReturn(restaurant);
 

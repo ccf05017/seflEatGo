@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Restaurant {
 
     @Id
@@ -25,32 +27,21 @@ public class Restaurant {
     private String address;
     
     @Transient
-    private List<ItemMenu> itemMenus = new ArrayList<>();
-
-    public Restaurant(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
-
-    public Restaurant(Long id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
+    private List<ItemMenu> itemMenus;
 
     public String getInformation() {
 
         return this.name + " in " + this.address;
     }
 
-    public void addItemMenu(ItemMenu itemMenu) {
-        itemMenus.add(itemMenu);
-    }
+    public void setItemMenus(List<ItemMenu> itemMenus) {
 
-    public void addItemMenus(List<ItemMenu> itemMenus) {
-        for (ItemMenu itemMenu : itemMenus) {
-            addItemMenu(itemMenu);
-        }
+        this.itemMenus = new ArrayList<>(itemMenus);
+
+        // 이게 안되는 이유?
+        // 객체의 참조가 전달되기 때문에
+        // 아래와 같이 하면 이 함수가 시행된 뒤의 모든 itemMenus 가 영향을 받는다
+//        this.itemMenus = itemMenus;
     }
 
     public void updateRestaurantInfo(String name, String address) {

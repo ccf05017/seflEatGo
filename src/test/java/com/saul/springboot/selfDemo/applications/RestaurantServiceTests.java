@@ -46,7 +46,11 @@ public class RestaurantServiceTests {
 
     private void mockRestaurantRepository() {
         List<Restaurant> restaurants = new ArrayList<>();
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip")
+            .address("Seoul")
+            .build();
         restaurants.add(restaurant);
 
         given(restaurantRepository.findAll()).willReturn(restaurants);
@@ -82,8 +86,15 @@ public class RestaurantServiceTests {
     @Test
     public void addRestaurant() {
 
-        Restaurant restaurant = new Restaurant("Beryong", "Seoul");
-        Restaurant saved = new Restaurant(1234L, "Beryong", "Seoul");
+        Restaurant restaurant = Restaurant.builder()
+            .name("Beryong")
+            .address("Seoul")
+            .build();
+        Restaurant saved = Restaurant.builder()
+            .id(1234L)
+            .name("Beryong")
+            .address("Seoul")
+            .build();
 
         given(restaurantRepository.save(any())).willReturn(saved);
 
@@ -95,7 +106,11 @@ public class RestaurantServiceTests {
     @Test
     public void updateRestaurant() {
 
-        Restaurant restaurant = new Restaurant(1L,"sushidama", "mokdong");
+        Restaurant restaurant = Restaurant.builder()
+            .id(1L)
+            .name("sushidama")
+            .address("mokdong")
+            .build();
         given(restaurantRepository.findById(1L)).willReturn(Optional.of(restaurant));
 
         restaurantService.updateRestaurant(1L, "blabla grill", "seoul");
