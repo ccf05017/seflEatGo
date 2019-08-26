@@ -73,7 +73,9 @@ public class RestaurantControllerTests {
 
 //        restaurant.addItemMenu(new ItemMenu("Kimchi"));
 
-        restaurant.setItemMenus(Arrays.asList(new ItemMenu("Kimchi")));
+        restaurant.setItemMenus(Arrays.asList(ItemMenu.builder()
+            .name("Kimchi")
+            .build()));
 
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
         given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);

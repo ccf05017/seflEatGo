@@ -59,7 +59,9 @@ public class RestaurantServiceTests {
 
     private void mockItemMenuRepository() {
         List<ItemMenu> itemMenus = new ArrayList<>();
-        itemMenus.add(new ItemMenu("Kimchi"));
+        itemMenus.add(ItemMenu.builder()
+            .name("Kimchi")
+            .build());
 
         given(itemMenuRepository.findAllByRestaurantId(1004L))
                 .willReturn(itemMenus);
