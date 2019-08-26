@@ -37,7 +37,7 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
 
         List<ItemMenu> itemMenus = itemMenuRepository.findAllByRestaurantId(id);
-        restaurant.setItemMenus(itemMenus);
+        restaurant.addItemMenus(itemMenus);
 
         return restaurant;
     }

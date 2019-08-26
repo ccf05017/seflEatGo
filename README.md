@@ -130,7 +130,7 @@
 ### 실습 종료
 * JPA 적용하는 부분에 미숙한 점이 굉장히 많음
 * 특히 CRUD 확장할 때...
-* 새로 혼자 처음부터 만들어 볼 것
+* 새로 혼자 처음부터 만들어 볼 것    
 
 ## 20190824
 
@@ -149,3 +149,8 @@
 * update 에서는 명시적인 save() 처리가 아닌 @Transactional 활용
 * setter 를 여러개 부르기 보다는 한번에 처리할 수 있는 메서드를 추가로 생성
   (이유 확인해볼 것) 
+
+### Lombok 적용
+- [ ] Restaurant domain getter / setter 적용
+- [ ] Restaurant domain constructor 적용
+- [ ] Restaurant domain builder 패턴 적용
