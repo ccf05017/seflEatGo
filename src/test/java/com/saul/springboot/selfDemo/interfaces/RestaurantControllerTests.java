@@ -103,7 +103,7 @@ public class RestaurantControllerTests {
     }
 
     @Test
-    public void create() throws Exception {
+    public void createWithValidData() throws Exception {
         // 가짜 데이터로 하드 코딩
 //        Restaurant restaurant = Restaurant.builder()
 //            .id(1234L)
@@ -136,7 +136,26 @@ public class RestaurantControllerTests {
     }
 
     @Test
-    public void update() throws Exception {
+    public void createWithInValidData() throws Exception {
+        given(restaurantService.addRestaurant(any())).will(invocation -> {
+            Restaurant restaurant = invocation.getArgument(0);
+
+            return Restaurant.builder()
+                    .id(1234L)
+                    .name(restaurant.getName())
+                    .address(restaurant.getAddress())
+                    .build();
+        });
+
+        mvc.perform(post("/restaurants")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\": \"\", \"address\": \"\"}"))
+
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateWithValidData() throws Exception {
         mvc.perform(patch("/restaurants/1")
             .contentType(MediaType.APPLICATION_JSON)
             .content("{\"name\": \"modified\", \"address\": \"space\"}"))
@@ -147,5 +166,14 @@ public class RestaurantControllerTests {
 //        verify(restaurantService).updateRestaurant(any(), any());
         // 실제 인자를 잘 받는지 테스트를 하자
         verify(restaurantService).updateRestaurant(1L, "modified", "space");
+    }
+
+    @Test
+    public void updateWithInValidData() throws Exception {
+        mvc.perform(patch("/restaurants/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\": \"\", \"address\": \"\"}"))
+
+                .andExpect(status().isBadRequest());
     }
 }

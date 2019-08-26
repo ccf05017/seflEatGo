@@ -166,5 +166,8 @@
 * given() + will() + lambda 를 통해 실제 데이터 test 가능
 * Restaurant Controller create() test case에 사례 추가
 
-- [ ] Restaurant Controller Create Test case 작성
-- [ ] Valid, Invalid 두가지 케이로 작성  
+- [x] Restaurant Controller Create Test case 작성
+- [x] Valid, Invalid 두가지 케이스로 작성
+- [x] Restaurant Controller Update Test case 작성
+
+* @Valid annotation 은 적용 대상 resource 앞에 붙여야 한다.  
