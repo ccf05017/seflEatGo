@@ -3,6 +3,7 @@ package com.saul.springboot.selfDemo.interfaces;
 import com.saul.springboot.selfDemo.applications.RestaurantService;
 import com.saul.springboot.selfDemo.domain.ItemMenu;
 import com.saul.springboot.selfDemo.domain.Restaurant;
+import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
 import org.hamcrest.core.StringContains;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -58,7 +60,7 @@ public class RestaurantControllerTests {
     }
 
     @Test
-    public void detail() throws Exception {
+    public void detailWithExistData() throws Exception {
 
         Restaurant restaurant = Restaurant.builder()
             .id(1004L)
@@ -100,6 +102,17 @@ public class RestaurantControllerTests {
                 .andExpect(content().string(
                         StringContains.containsString("\"name\":\"PeriPeri Food\"")
                 ));
+    }
+
+    @Test
+    public void detailWithNonExistData() throws Exception {
+        given(restaurantService.getRestaurant(404L))
+                .willThrow(new RestaurantNotFoundException(404L));
+
+        mvc.perform(get("/restaurants/404"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string(containsString("{}")));
+
     }
 
     @Test
