@@ -83,7 +83,7 @@ public class RestaurantServiceTests {
     }
 
     @Test(expected = RestaurantNotFoundException.class)
-    public void getRestaurantWithNotExisted() {
+    public void getRestaurantWithNonExisted() {
         Restaurant restaurant = this.restaurantService.getRestaurant(404L);
     }
 

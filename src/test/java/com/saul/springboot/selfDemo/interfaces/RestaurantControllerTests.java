@@ -106,12 +106,12 @@ public class RestaurantControllerTests {
 
     @Test
     public void detailWithNonExistData() throws Exception {
-        given(restaurantService.getRestaurant(404L))
-                .willThrow(new RestaurantNotFoundException(404L));
+
+        given(restaurantService.getRestaurant(404L)).willThrow(new RestaurantNotFoundException(404L));
 
         mvc.perform(get("/restaurants/404"))
-                .andExpect(status().isNotFound())
-                .andExpect(content().string(containsString("{}")));
+            .andExpect(status().isNotFound())
+            .andExpect(content().string(containsString("{}")));
 
     }
 
