@@ -179,5 +179,8 @@
 - [X] not found class 생성
 - [X] error advice controller advice 생성
 - [X] 빈 json을 돌려주는 test case 작성
-- [ ] 실제 service layer 에서 동작하도록 수정
-- [ ] restaurant service test 수정 
+- [X] 실제 service layer 에서 동작하도록 수정
+- [X] restaurant service test 수정 
+
+* 키워드 별로 못따라간 부분이 너무 많음
+* 지우고 다시 혼자 재구현할 것

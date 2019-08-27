@@ -1,9 +1,6 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.domain.ItemMenu;
-import com.saul.springboot.selfDemo.domain.ItemMenuRepository;
-import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
+import com.saul.springboot.selfDemo.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +31,9 @@ public class RestaurantService {
     public Restaurant getRestaurant(Long id) {
         // 실무에서 이렇게 처리하면 안됨
         // 이 상황에서의 exception은 다음 강의에
-        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+        Restaurant restaurant = restaurantRepository
+                .findById(id)
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
 
         List<ItemMenu> itemMenus = itemMenuRepository.findAllByRestaurantId(id);
         restaurant.setItemMenus(itemMenus);

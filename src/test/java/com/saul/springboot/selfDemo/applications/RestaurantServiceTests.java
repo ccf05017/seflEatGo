@@ -1,9 +1,6 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.domain.ItemMenu;
-import com.saul.springboot.selfDemo.domain.ItemMenuRepository;
-import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
+import com.saul.springboot.selfDemo.domain.*;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Before;
@@ -76,13 +73,18 @@ public class RestaurantServiceTests {
     }
 
     @Test
-    public void getRestaurant() {
+    public void getRestaurantWithExisted() {
         Restaurant restaurant = this.restaurantService.getRestaurant(1004L);
 
         Assert.assertThat(restaurant.getId(), CoreMatchers.is(1004L));
 
         ItemMenu itemMenu = restaurant.getItemMenus().get(0);
         Assert.assertThat(itemMenu.getName(), CoreMatchers.is("Kimchi"));
+    }
+
+    @Test(expected = RestaurantNotFoundException.class)
+    public void getRestaurantWithNotExisted() {
+        Restaurant restaurant = this.restaurantService.getRestaurant(404L);
     }
 
     @Test
