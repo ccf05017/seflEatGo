@@ -171,3 +171,13 @@
 - [x] Restaurant Controller Update Test case 작성
 
 * @Valid annotation 은 적용 대상 resource 앞에 붙여야 한다.  
+
+## 20190827
+### Error 처리
+- [ ] Restaurant Controller Detail case 나누기 (성공/실패)
+- [ ] Restaurant Controller Detail Notfound test case 작성
+- [ ] not found class 생성
+- [ ] error advice controller advice 생성
+- [ ] 빈 json을 돌려주는 test case 작성
+- [ ] 실제 service layer 에서 동작하도록 수정
+- [ ] restaurant service test 수정 
