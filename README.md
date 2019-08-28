@@ -172,7 +172,7 @@
 
 * @Valid annotation 은 적용 대상 resource 앞에 붙여야 한다.  
 
-## 20190827
+## 20190827 ~ 20190828
 ### Error 처리
 - [X] Restaurant Controller Detail case 나누기 (성공/실패)
 - [X] Restaurant Controller Detail Notfound test case 작성
