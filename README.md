@@ -186,7 +186,7 @@
 * 지우고 다시 혼자 재구현할 것 (20190827 1차 재구현 완료)
 
 ### ItemMenu Domain CRUD
-- [ ] bulk update 용 json 파일 생성
-- [ ] ItemMenu Controller 구현
-- [ ] bulkUpdate test case 작성
+- [X] bulk update 용 json 파일 생성
+- [x] ItemMenu Controller 구현
+- [x] bulkUpdate test case 작성
 - [ ] ItemMenu Service 구현
