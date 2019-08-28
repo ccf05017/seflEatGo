@@ -189,4 +189,9 @@
 - [X] bulk update 용 json 파일 생성
 - [x] ItemMenu Controller 구현
 - [x] bulkUpdate test case 작성
-- [ ] ItemMenu Service 구현
+- [x] ItemMenu Service 구현
+- [x] ItemMenu Service test case 작성
+
+* @JsonInclude Annotation 새로 사용
+* JsonInclude.Include.Not_Null 인자로 없는 놈 안 보이게 할 수 있음
+* @Transient 와 함께 사용법 제대로 숙지해둘 것

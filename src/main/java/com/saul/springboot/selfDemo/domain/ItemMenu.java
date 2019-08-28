@@ -1,9 +1,6 @@
 package com.saul.springboot.selfDemo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +16,7 @@ public class ItemMenu {
     @GeneratedValue
     private Long Id;
 
+    @Setter
     private Long restaurantId;
 
     @Getter
