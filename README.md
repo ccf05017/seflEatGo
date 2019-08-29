@@ -204,3 +204,11 @@
 * 현재 API 구조에서 ItemMenu 에 id를 주면 수정도 가능하다 (PATCH 를 쓰니까)
 * 편하긴 한데 언제 POST 없이 PATCH 로만 구현해도 될 지 고민해보자
 * ItemMenu 없는 대상 구현 중 이상한 현상 발견(Error Handler 쪽 주석 참고)
+
+## 20190829
+
+### Review Domain CRUD
+- [ ] Review Controller create test case 작성
+- [ ] Review Controller create 구현
+- [ ] Review Service 뼈대 구현
+- [ ] Review Domain 뼈대 구현 + Entity 설정
