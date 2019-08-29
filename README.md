@@ -195,3 +195,11 @@
 * @JsonInclude Annotation 새로 사용
 * JsonInclude.Include.Not_Null 인자로 없는 놈 안 보이게 할 수 있음
 * @Transient 와 함께 사용법 제대로 숙지해둘 것
+
+### ItemMenu Domain CRUD 2
+- [ ] ItemMenu 수정 기능 구현 (기존 기능 활용)
+- [ ] ItemMenu 삭제 기능 구현
+
+* 현재 API 구조에서 ItemMenu 에 id를 주면 수정도 가능하다 (PATCH 를 쓰니까)
+* 편하긴 한데 언제 POST 없이 PATCH 로만 구현해도 될 지 고민해보자
+ 

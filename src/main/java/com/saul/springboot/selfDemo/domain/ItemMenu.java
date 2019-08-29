@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ItemMenu {
 
     @Id
@@ -19,6 +20,6 @@ public class ItemMenu {
     @Setter
     private Long restaurantId;
 
-    @Getter
+//    @Getter
     private String name;
 }

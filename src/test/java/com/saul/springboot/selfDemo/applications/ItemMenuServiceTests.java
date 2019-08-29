@@ -30,6 +30,7 @@ public class ItemMenuServiceTests {
 
     @Test
     public void bulkUpdate() {
+
         List<ItemMenu> itemMenus = new ArrayList<>();
         itemMenus.add(ItemMenu.builder().name("test1").build());
         itemMenus.add(ItemMenu.builder().name("test2").build());
