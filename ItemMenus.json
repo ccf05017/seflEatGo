@@ -5,6 +5,7 @@
   },
   {
     "id": 4,
-    "name": "francesinha"
+    "name": "francesinha",
+    "destroy": "true"
   }
 ]

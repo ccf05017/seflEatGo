@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.applications;
 
 import com.saul.springboot.selfDemo.domain.ItemMenu;
+import com.saul.springboot.selfDemo.domain.ItemMenuNotFoundException;
 import com.saul.springboot.selfDemo.domain.ItemMenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +22,26 @@ public class ItemMenuService {
 
         for (ItemMenu itemMenu : itemMenus) {
 
-            if(itemMenu.isDestroy()) {
-                this.itemMenuRepository.deleteById(itemMenu.getId());
-                continue;
-            }
-
-            itemMenu.setRestaurantId(restaurantId);
-            this.itemMenuRepository.save(itemMenu);
+            isExist(itemMenu);
+            update(restaurantId, itemMenu);
         }
+    }
+
+    private void isExist(ItemMenu itemMenu) {
+        this.itemMenuRepository
+            .findById(itemMenu.getId())
+            .orElseThrow(() -> new ItemMenuNotFoundException(itemMenu.getId()));
+    }
+
+    private void update(Long restaurantId, ItemMenu itemMenu) {
+
+        if(itemMenu.isDestroy()) {
+            this.itemMenuRepository.deleteById(itemMenu.getId());
+            return;
+        }
+
+        itemMenu.setRestaurantId(restaurantId);
+        this.itemMenuRepository.save(itemMenu);
     }
 
 }
