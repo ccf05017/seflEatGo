@@ -20,6 +20,12 @@ public class ItemMenuService {
     public void bulkUpdate(Long restaurantId, List<ItemMenu> itemMenus) {
 
         for (ItemMenu itemMenu : itemMenus) {
+
+            if(itemMenu.isDestroy()) {
+                this.itemMenuRepository.deleteById(itemMenu.getId());
+                continue;
+            }
+
             itemMenu.setRestaurantId(restaurantId);
             this.itemMenuRepository.save(itemMenu);
         }

@@ -1,8 +1,10 @@
 [
   {
-    "name": "peri peri chicken"
+    "id": 2,
+    "name": "PiriPiri Chicken"
   },
   {
+    "id": 4,
     "name": "francesinha"
   }
 ]
