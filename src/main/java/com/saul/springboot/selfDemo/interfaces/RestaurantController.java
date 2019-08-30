@@ -46,6 +46,7 @@ public class RestaurantController {
         Restaurant saved = restaurantService.addRestaurant(restaurant);
 
         URI location = new URI("/restaurants/" + saved.getId());
+
         return ResponseEntity.created(location).body("{}");
     }
 

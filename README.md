@@ -208,7 +208,7 @@
 ## 20190829
 
 ### Review Domain CRUD
-- [ ] Review Controller create test case 작성
-- [ ] Review Controller create 구현
-- [ ] Review Service 뼈대 구현
-- [ ] Review Domain 뼈대 구현 + Entity 설정
+- [X] Review Controller create test case 작성
+- [X] Review Controller create 구현
+- [x] Review Service 뼈대 구현
+- [x] Review Domain 뼈대 구현 + Entity 설정
