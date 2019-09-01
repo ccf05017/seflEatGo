@@ -27,7 +27,8 @@ public class ReviewController {
 
         Review review = this.reviewService.addReview(resource);
 
-        URI uri = new URI("/restaurants/" + restaurantId + "/reviews/" + review.getId());
+        URI uri = new URI("/restaurants/" + restaurantId +
+                "/reviews/" + review.getId());
 
         return ResponseEntity.created(uri).body("{}");
     }

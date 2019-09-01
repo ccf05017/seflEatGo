@@ -212,3 +212,10 @@
 - [X] Review Controller create 구현
 - [x] Review Service 뼈대 구현
 - [x] Review Domain 뼈대 구현 + Entity 설정
+
+## 20190901
+
+### Review Domain CRUD
+- [ ] Review Service addReview 테스트 및 구현
+- [ ] Review Repository 테스트 및 구현
+- [ ] Review Controller Validation 테스트 및 구현
