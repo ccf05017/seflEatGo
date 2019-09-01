@@ -28,6 +28,9 @@ public class RestaurantServiceTests {
     @Mock
     private ItemMenuRepository itemMenuRepository;
 
+    @Mock
+    private ReviewRepository reviewRepository;
+
     // Test 실행하기 전에 미리 수행되는 동작
     // DI를 직접 해주도록 설정
     @Before
@@ -36,9 +39,10 @@ public class RestaurantServiceTests {
 
         mockRestaurantRepository();
         mockItemMenuRepository();
+        mockReviewRepository();
 
         this.restaurantService = new RestaurantService(
-                restaurantRepository, itemMenuRepository);
+                restaurantRepository, itemMenuRepository, reviewRepository);
     }
 
     private void mockRestaurantRepository() {
@@ -64,6 +68,20 @@ public class RestaurantServiceTests {
                 .willReturn(itemMenus);
     }
 
+    private void mockReviewRepository() {
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(Review.builder()
+            .id(1L)
+            .writer("poppo")
+            .description("JMTGR")
+            .score(3)
+            .restaurantId(1004L)
+            .build());
+
+        given(reviewRepository.findAllByRestaurantId(1004L))
+            .willReturn(reviews);
+    }
+
     @Test
     public void getRestaurants() {
         List<Restaurant> restaurants = restaurantService.getRestaurants();
@@ -79,7 +97,10 @@ public class RestaurantServiceTests {
         Assert.assertThat(restaurant.getId(), CoreMatchers.is(1004L));
 
         ItemMenu itemMenu = restaurant.getItemMenus().get(0);
+        Review review = restaurant.getReviews().get(0);
+
         Assert.assertThat(itemMenu.getName(), CoreMatchers.is("Kimchi"));
+        Assert.assertThat(review.getDescription(), CoreMatchers.is("JMTGR"));
     }
 
     @Test(expected = RestaurantNotFoundException.class)

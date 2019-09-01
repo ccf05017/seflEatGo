@@ -1,11 +1,10 @@
 [
   {
-    "id": 2,
+    "id": 1,
     "name": "PiriPiri Chicken"
   },
   {
-    "id": 4,
-    "name": "francesinha",
-    "destroy": "true"
+    "id": 2,
+    "name": "francesinha"
   }
 ]

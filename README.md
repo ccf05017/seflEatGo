@@ -222,6 +222,8 @@
 
 ## 20190902 
 ### Restaurant Domain Review 조회 기능 추가
-- [ ] Controller 테스트 수정
-- [ ] Service 테스트 수정
-- [ ] Review Service 에서 restaurantId 설정하도록 수정
+- [X] Controller 테스트 수정
+- [X] Service 테스트 수정
+- [X] Review Service 에서 restaurantId 설정하도록 수정
+
+* ItemMenu Service 에외처리 이상함 수정할 것

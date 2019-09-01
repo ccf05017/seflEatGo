@@ -4,6 +4,7 @@ import com.saul.springboot.selfDemo.applications.RestaurantService;
 import com.saul.springboot.selfDemo.domain.ItemMenu;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
+import com.saul.springboot.selfDemo.domain.Review;
 import org.hamcrest.core.StringContains;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,27 +61,30 @@ public class RestaurantControllerTests {
     }
 
     @Test
-    public void detailWithExistData() throws Exception {
+    public void detailWithExistData() throws Exception { // 해당 기능은 restaurantService에 의존성 있음
 
+        // Restaurant 테스트 데이터 추가
         Restaurant restaurant = Restaurant.builder()
             .id(1004L)
             .name("Bob zip")
             .address("Seoul")
             .build();
-        Restaurant restaurant2 = Restaurant.builder()
-            .id(2020L)
-            .name("PeriPeri Food")
-            .address("Seoul")
-            .build();
 
-//        restaurant.addItemMenu(new ItemMenu("Kimchi"));
-
+        // ItemMenu 테스트 데이터 추가
         restaurant.setItemMenus(Arrays.asList(ItemMenu.builder()
             .name("Kimchi")
             .build()));
 
+        // Review 테스트 데이터 추가
+        restaurant.setReviews(Arrays.asList(Review.builder()
+            .writer("poppo")
+            .id(1L)
+            .score(3)
+            .description("JMTGR")
+            .restaurantId(1004L)
+            .build()));
+
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
-        given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
 
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
@@ -92,16 +96,11 @@ public class RestaurantControllerTests {
                 ))
                 .andExpect(content().string(
                         StringContains.containsString("Kimchi")
-                ));
-
-        mvc.perform(get("/restaurants/2020"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(
-                        StringContains.containsString("\"id\":2020")
                 ))
                 .andExpect(content().string(
-                        StringContains.containsString("\"name\":\"PeriPeri Food\"")
-                ));
+                        StringContains.containsString("JMTGR")
+                ))
+        ;
     }
 
     @Test

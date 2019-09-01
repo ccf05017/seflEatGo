@@ -39,7 +39,7 @@ public class ReviewServiceTests {
 
         given(reviewRepository.save(any())).willReturn(review);
 
-        Review saved = reviewService.addReview(review);
+        Review saved = reviewService.addReview(1L, review);
 
         assertThat(saved.getId(), is(1L));
 

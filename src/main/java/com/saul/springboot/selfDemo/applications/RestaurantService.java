@@ -16,10 +16,15 @@ public class RestaurantService {
     @Autowired
     ItemMenuRepository itemMenuRepository;
 
+    @Autowired
+    ReviewRepository reviewRepository;
+
     public RestaurantService(RestaurantRepository restaurantRepository,
-                             ItemMenuRepository itemMenuRepository) {
+                             ItemMenuRepository itemMenuRepository,
+                             ReviewRepository reviewRepository) {
         this.restaurantRepository = restaurantRepository;
         this.itemMenuRepository = itemMenuRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public List<Restaurant> getRestaurants() {
@@ -29,14 +34,16 @@ public class RestaurantService {
     }
 
     public Restaurant getRestaurant(Long id) {
-        // 실무에서 이렇게 처리하면 안됨
-        // 이 상황에서의 exception은 다음 강의에
+
         Restaurant restaurant = restaurantRepository
                 .findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
 
         List<ItemMenu> itemMenus = itemMenuRepository.findAllByRestaurantId(id);
         restaurant.setItemMenus(itemMenus);
+
+        List<Review> reviews = reviewRepository.findAllByRestaurantId(id);
+        restaurant.setReviews(reviews);
 
         return restaurant;
     }

@@ -1,16 +1,14 @@
 package com.saul.springboot.selfDemo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
@@ -23,12 +21,14 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     private Long restaurantId;
 
     @NotEmpty
     private String writer;
 
-    @NotNull
+    @Max(5)
+    @Min(0)
     private Integer score;
 
     @NotEmpty
