@@ -219,3 +219,9 @@
 - [X] Review Service addReview 테스트 및 구현
 - [X] Review Repository 테스트 및 구현
 - [X] Review Controller Validation 테스트 및 구현
+
+## 20190902 
+### Restaurant Domain Review 조회 기능 추가
+- [ ] Controller 테스트 수정
+- [ ] Service 테스트 수정
+- [ ] Review Service 에서 restaurantId 설정하도록 수정
