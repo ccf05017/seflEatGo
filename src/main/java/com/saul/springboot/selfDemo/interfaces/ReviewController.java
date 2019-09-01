@@ -29,6 +29,6 @@ public class ReviewController {
 
         URI uri = new URI("/restaurants/" + restaurantId + "/reviews/" + review.getId());
 
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body("{}");
     }
 }
