@@ -218,4 +218,4 @@
 ### Review Domain CRUD
 - [X] Review Service addReview 테스트 및 구현
 - [X] Review Repository 테스트 및 구현
-- [ ] Review Controller Validation 테스트 및 구현
+- [X] Review Controller Validation 테스트 및 구현

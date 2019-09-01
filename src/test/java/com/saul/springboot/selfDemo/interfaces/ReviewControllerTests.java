@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
@@ -29,7 +30,7 @@ public class ReviewControllerTests {
     ReviewService reviewService;
 
     @Test
-    public void create() throws Exception {
+    public void createWithValidParam() throws Exception {
 
         given(reviewService.addReview(any())).willReturn(
             Review.builder().id(1L).build()
@@ -42,6 +43,17 @@ public class ReviewControllerTests {
             .andExpect(header().stringValues("Location", "/restaurants/1/reviews/1"));
 
         verify(reviewService).addReview(any());
+    }
+
+    @Test
+    public void createWithInvalidParam() throws Exception {
+
+        mvc.perform(post("/restaurants/1/reviews")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}"))
+                .andExpect(status().isBadRequest());
+
+        verify(reviewService, never()).addReview(any());
     }
 
 }

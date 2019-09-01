@@ -5,10 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+@Entity
 @Builder
 @Getter
 @NoArgsConstructor
@@ -21,9 +25,12 @@ public class Review {
 
     private Long restaurantId;
 
+    @NotEmpty
     private String writer;
 
+    @NotNull
     private Integer score;
 
+    @NotEmpty
     private String description;
 }
