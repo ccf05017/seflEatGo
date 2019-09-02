@@ -21,7 +21,9 @@ public class ItemMenuService {
     public void bulkUpdate(Long restaurantId, List<ItemMenu> itemMenus) {
 
         for (ItemMenu itemMenu : itemMenus) {
-
+            // TODO
+            // 현재 모든 PATCH 에 반응하고 있음
+            // 삭제 케이스에서만 확인하도록 디버깅 필요
             isExist(itemMenu);
             update(restaurantId, itemMenu);
         }
