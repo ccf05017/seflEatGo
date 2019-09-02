@@ -1,5 +1,6 @@
-rootProject.name = 'selfDemo'
+rootProject.name = 'com.saul.springboot.selfDemo'
 
 include 'selfdemo-common'
 include 'selfdemo-admin-api'
+include 'selfdemo-customer-api'
 
