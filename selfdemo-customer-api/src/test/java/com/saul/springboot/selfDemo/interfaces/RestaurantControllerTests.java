@@ -1,11 +1,8 @@
 package com.saul.springboot.selfDemo.interfaces;
 
 import com.saul.springboot.selfDemo.applications.RestaurantService;
-import com.saul.springboot.selfDemo.domain.ItemMenu;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
-import com.saul.springboot.selfDemo.domain.Review;
-import com.saul.springboot.selfDemo.interfaces.RestaurantController;
 import org.hamcrest.core.StringContains;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
@@ -71,20 +67,6 @@ public class RestaurantControllerTests {
             .address("Seoul")
             .build();
 
-        // ItemMenu 테스트 데이터 추가
-        restaurant.setItemMenus(Arrays.asList(ItemMenu.builder()
-            .name("Kimchi")
-            .build()));
-
-        // Review 테스트 데이터 추가
-        restaurant.setReviews(Arrays.asList(Review.builder()
-            .writer("poppo")
-            .id(1L)
-            .score(3)
-            .description("JMTGR")
-            .restaurantId(1004L)
-            .build()));
-
         given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
 
         mvc.perform(get("/restaurants/1004"))
@@ -94,12 +76,6 @@ public class RestaurantControllerTests {
                 ))
                 .andExpect(content().string(
                         StringContains.containsString("\"name\":\"Bob zip\"")
-                ))
-                .andExpect(content().string(
-                        StringContains.containsString("Kimchi")
-                ))
-                .andExpect(content().string(
-                        StringContains.containsString("JMTGR")
                 ))
         ;
     }

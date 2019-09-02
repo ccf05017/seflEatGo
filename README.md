@@ -231,7 +231,7 @@
 ## 20190903
 ### 프로젝트 분리(Admin API 정리)
 - [ ] Customer, Admin, Common 프로젝트 분리 작업 진행
-- [ ] Admin RestaurantController detail() review, itemMenu 조회 기능 제거
-- [ ] Admin RestaurantService detail() review, itemMenu 조회 기능 제거
+- [X] Admin RestaurantController detail() review, itemMenu 조회 기능 제거
+- [X] Admin RestaurantService detail() review, itemMenu 조회 기능 제거
 - [ ] Admin ItemMenuController list() 구현 (restaurant 에 종속)
 - [ ] Admin ReviewController 전체 기능 제거 후 list() 구현 (restaurant 에 비종속)
