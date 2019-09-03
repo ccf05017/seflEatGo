@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 public class RestaurantServiceTests {
@@ -70,42 +67,5 @@ public class RestaurantServiceTests {
     @Test(expected = RestaurantNotFoundException.class)
     public void getRestaurantWithNonExisted() {
         Restaurant restaurant = this.restaurantService.getRestaurant(404L);
-    }
-
-    @Test
-    public void addRestaurant() {
-
-        Restaurant restaurant = Restaurant.builder()
-            .name("Beryong")
-            .address("Seoul")
-            .build();
-        Restaurant saved = Restaurant.builder()
-            .id(1234L)
-            .name("Beryong")
-            .address("Seoul")
-            .build();
-
-        given(restaurantRepository.save(any())).willReturn(saved);
-
-        Restaurant created = restaurantService.addRestaurant(restaurant);
-
-        Assert.assertThat(created.getId(), CoreMatchers.is(1234L));
-    }
-
-    @Test
-    public void updateRestaurant() {
-
-        Restaurant restaurant = Restaurant.builder()
-            .id(1L)
-            .name("sushidama")
-            .address("mokdong")
-            .build();
-        given(restaurantRepository.findById(1L)).willReturn(Optional.of(restaurant));
-
-        restaurantService.updateRestaurant(1L, "blabla grill", "seoul");
-
-        assertThat(restaurant.getId(), is(1L));
-        assertThat(restaurant.getName(), is("blabla grill"));
-
     }
 }

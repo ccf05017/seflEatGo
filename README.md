@@ -235,3 +235,4 @@
 - [X] Admin RestaurantService detail() review, itemMenu 조회 기능 제거
 - [X] Admin ItemMenuController list() 구현 (restaurant 에 종속)
 - [X] Admin ReviewController 전체 기능 제거 후 list() 구현 (restaurant 에 비종속)
+- [X] Customer API 불필요한 기능 제거

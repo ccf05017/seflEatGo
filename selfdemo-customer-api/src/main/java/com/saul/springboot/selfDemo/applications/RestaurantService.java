@@ -1,10 +1,11 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.domain.*;
+import com.saul.springboot.selfDemo.domain.Restaurant;
+import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
+import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -28,24 +29,6 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository
                 .findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
-
-        return restaurant;
-    }
-
-    public Restaurant addRestaurant(Restaurant restaurant) {
-
-        return restaurantRepository.save(restaurant);
-    }
-
-    // ??????? 뭔 말이디..?
-    @Transactional
-    public Restaurant updateRestaurant(long id, String name, String address) {
-
-        Restaurant restaurant = restaurantRepository
-                .findById(id)
-                .orElseThrow(() -> new RestaurantNotFoundException(id));
-
-        restaurant.updateRestaurantInfo(name, address);
 
         return restaurant;
     }
