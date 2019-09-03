@@ -46,4 +46,10 @@ public class ItemMenuService {
         this.itemMenuRepository.save(itemMenu);
     }
 
+    public List<ItemMenu> getItemMenus(Long restaurantId) {
+
+        List<ItemMenu> itemMenus = this.itemMenuRepository.findAllByRestaurantId(restaurantId);
+
+        return itemMenus;
+    }
 }

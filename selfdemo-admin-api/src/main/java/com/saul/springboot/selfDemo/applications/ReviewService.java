@@ -5,6 +5,8 @@ import com.saul.springboot.selfDemo.domain.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
 
@@ -15,11 +17,8 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public Review addReview(Long restaurantId, Review resource) {
+    public List<Review> getReviews() {
 
-        resource.setRestaurantId(restaurantId);
-        Review review = this.reviewRepository.save(resource);
-
-        return review;
+        return this.reviewRepository.findAll();
     }
 }

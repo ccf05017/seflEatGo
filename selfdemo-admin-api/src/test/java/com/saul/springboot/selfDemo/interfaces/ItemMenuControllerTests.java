@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.interfaces;
 
 import com.saul.springboot.selfDemo.applications.ItemMenuService;
+import com.saul.springboot.selfDemo.domain.ItemMenu;
 import com.saul.springboot.selfDemo.domain.ItemMenuNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +12,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,6 +35,19 @@ public class ItemMenuControllerTests {
 
     @MockBean
     ItemMenuService itemMenuService;
+
+    @Test
+    public void itemMenuList() throws Exception {
+        List<ItemMenu> itemMenus = new ArrayList<>();
+        itemMenus.add(ItemMenu.builder().name("sushi").build());
+
+        given(itemMenuService.getItemMenus(eq(1L)))
+                .willReturn(itemMenus);
+
+        mvc.perform(get("/restaurant/1/itemMenus"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"name\":\"sushi\"")));
+    }
 
     @Test
     public void bulkUpdateWithValidItemMenu() throws Exception {

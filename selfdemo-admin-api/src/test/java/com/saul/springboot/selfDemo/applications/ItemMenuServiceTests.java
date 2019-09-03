@@ -11,6 +11,8 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
@@ -79,6 +81,20 @@ public class ItemMenuServiceTests {
         itemMenuService.bulkUpdate(1L, itemMenus);
 
         verify(itemMenuRepository, times(1)).deleteById(eq(4444L));
+    }
+
+    @Test
+    public void getItemMenus() {
+
+        List<ItemMenu> itemMenus = new ArrayList<>();
+        itemMenus.add(ItemMenu.builder().name("sushi").restaurantId(1L).build());
+
+        given(itemMenuRepository.findAllByRestaurantId(eq(1L))).willReturn(itemMenus);
+
+        List<ItemMenu> returnedMenus = itemMenuService.getItemMenus(1L);
+        ItemMenu target = returnedMenus.get(0);
+
+        assertThat(target.getName(), is("sushi"));
     }
 
 }

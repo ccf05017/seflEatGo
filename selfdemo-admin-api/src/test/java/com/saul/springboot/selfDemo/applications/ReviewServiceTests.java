@@ -8,11 +8,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
 
 public class ReviewServiceTests {
 
@@ -29,22 +30,14 @@ public class ReviewServiceTests {
     }
 
     @Test
-    public void addReivew() {
+    public void getReviews() {
+        given(reviewRepository.findAll())
+                .willReturn(Arrays.asList(Review.builder().writer("poppo").build()));
 
-        Review review = Review.builder()
-                .writer("poppo")
-                .id(1L)
-                .score(3)
-                .build();
+        List<Review> reviews = reviewService.getReviews();
+        Review review = reviews.get(0);
 
-        given(reviewRepository.save(any())).willReturn(review);
-
-        Review saved = reviewService.addReview(1L, review);
-
-        assertThat(saved.getId(), is(1L));
-
-        verify(reviewRepository).save(any());
-
+        assertThat(review.getWriter(), is("poppo"));
     }
 
 }

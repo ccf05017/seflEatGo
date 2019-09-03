@@ -4,15 +4,10 @@ package com.saul.springboot.selfDemo.interfaces;
 import com.saul.springboot.selfDemo.applications.ReviewService;
 import com.saul.springboot.selfDemo.domain.Review;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 public class ReviewController {
@@ -20,17 +15,9 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    @PostMapping("/restaurants/{restaurantId}/reviews")
-    public ResponseEntity<?> create(
-                @PathVariable(name = "restaurantId") Long restaurantId,
-                @Valid @RequestBody Review resource
-            ) throws URISyntaxException {
+    @GetMapping("/reviews")
+    public List<Review> list() {
 
-        Review review = this.reviewService.addReview(restaurantId, resource);
-
-        URI uri = new URI("/restaurants/" + restaurantId +
-                "/reviews/" + review.getId());
-
-        return ResponseEntity.created(uri).body("{}");
+        return this.reviewService.getReviews();
     }
 }
