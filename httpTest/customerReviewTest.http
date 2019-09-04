@@ -1,0 +1,21 @@
+POST http://localhost:8080/restaurants/1/reviews
+Content-Type: application/json
+
+{
+  "writer": "poppo",
+  "description": "JMT",
+  "score": 3
+}
+
+###
+
+POST http://localhost:8080/restaurants/1/reviews
+Content-Type: application/json
+
+{
+  "writer": "ita",
+  "description": "fuck",
+  "score": 1
+}
+
+###

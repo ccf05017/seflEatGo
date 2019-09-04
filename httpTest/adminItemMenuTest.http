@@ -1,0 +1,51 @@
+GET http://localhost:8080/restaurants/1/itemMenus
+
+###
+
+GET http://localhost:8080/restaurants/2/itemMenus
+
+###
+
+PATCH http://localhost:8080//restaurants/1/itemMenus
+Content-Type: application/json
+
+[
+  {
+    "name": "omakase"
+  },
+  {
+    "name": "beer"
+  }
+]
+
+###
+
+PATCH http://localhost:8080//restaurants/1/itemMenus
+Content-Type: application/json
+
+[
+  {
+    "id": "5",
+    "destroy": true
+  },
+  {
+    "id": "6",
+    "destroy": true
+  }
+]
+
+###
+
+PATCH http://localhost:8080//restaurants/2/itemMenus
+Content-Type: application/json
+
+[
+  {
+    "name": "pulled fork"
+  },
+  {
+    "name": "brisket"
+  }
+]
+
+###

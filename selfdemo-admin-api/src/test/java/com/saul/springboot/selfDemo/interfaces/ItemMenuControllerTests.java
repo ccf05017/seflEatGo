@@ -44,7 +44,7 @@ public class ItemMenuControllerTests {
         given(itemMenuService.getItemMenus(eq(1L)))
                 .willReturn(itemMenus);
 
-        mvc.perform(get("/restaurant/1/itemMenus"))
+        mvc.perform(get("/restaurants/1/itemMenus"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"name\":\"sushi\"")));
     }

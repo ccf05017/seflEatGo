@@ -1,0 +1,11 @@
+GET http://localhost:8080/restaurants
+
+###
+
+GET http://localhost:8080/restaurants/1
+
+###
+
+GET http://localhost:8080/restaurants/2
+
+###
