@@ -35,6 +35,12 @@ public class ItemMenuService {
             .orElseThrow(() -> new ItemMenuNotFoundException(itemMenu.getId()));
     }
 
+    public void update(Long itemMenuId,
+                       String name,
+                       boolean willDelete) {
+//        find
+    }
+
     private void update(Long restaurantId, ItemMenu itemMenu) {
 
         if(itemMenu.isDestroy()) {

@@ -3,8 +3,6 @@ package com.saul.springboot.selfDemo.applications;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -14,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
 public class RestaurantServiceTests {
@@ -54,14 +54,14 @@ public class RestaurantServiceTests {
         List<Restaurant> restaurants = restaurantService.getRestaurants();
 
         Restaurant restaurant = restaurants.get(0);
-        Assert.assertThat(restaurant.getId(), CoreMatchers.is(1004L));
+        assertThat(restaurant.getId(), is(1004L));
     }
 
     @Test
     public void getRestaurantWithExisted() {
         Restaurant restaurant = this.restaurantService.getRestaurant(1004L);
 
-        Assert.assertThat(restaurant.getId(), CoreMatchers.is(1004L));
+        assertThat(restaurant.getId(), is(1004L));
     }
 
     @Test(expected = RestaurantNotFoundException.class)

@@ -236,3 +236,10 @@
 - [X] Admin ItemMenuController list() 구현 (restaurant 에 종속)
 - [X] Admin ReviewController 전체 기능 제거 후 list() 구현 (restaurant 에 비종속)
 - [X] Customer API 불필요한 기능 제거
+
+## 20190904
+### Gradle 설정 변경
+- [X] Common 모듈 jar 설정 추가
+- [X] Gradle을 통해 서버 실행, 테스트 변경
+
+* Gradle을 활용하면 멀티프로젝트 관리가 용이함
