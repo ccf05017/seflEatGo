@@ -247,3 +247,10 @@
 ### 레알 영속화
 - [X] application.yml 파일 추가
 - [X] 테스트를 위한 환경변수 profile 생성
+
+## 20190905
+### 가게 필터링 기능 구현 
+- [X] Region Domain 구현
+- [X] Region Controller 구현
+- [ ] Region Service 구현
+- [ ] Region Repository Interface 구현
