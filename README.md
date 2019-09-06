@@ -245,7 +245,7 @@
 * Gradle을 활용하면 멀티프로젝트 관리가 용이함
 
 ### 레알 영속화
-- [X] application.yml 파일 추가**
+- [X] application.yml 파일 추가
 - [X] 테스트를 위한 환경변수 profile 생성
 
 ## 20190905
@@ -256,3 +256,12 @@
 - [X] Common Region Repository Interface 구현
 - [X] Customer Region Controller GET 구현
 - [X] Customer Region Service list() 구현
+
+## 20190906
+### 가게 필터링 기능 구현2(Category 구현)
+- [X] Admin Category Domain 구현
+- [X] Admin Category Controller GET, POST 구현
+- [X] Admin Category Service list(), add() 구현
+- [X] Common Category Repository Interface 구현
+- [X] Customer Category Controller GET 구현
+- [X] Customer Category Service list() 구현
