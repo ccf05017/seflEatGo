@@ -258,10 +258,15 @@
 - [X] Customer Region Service list() 구현
 
 ## 20190906
-### 가게 필터링 기능 구현2(Category 구현)
+### 가게 필터링 기능 구현2 (Category 구현)
 - [X] Admin Category Domain 구현
 - [X] Admin Category Controller GET, POST 구현
 - [X] Admin Category Service list(), add() 구현
 - [X] Common Category Repository Interface 구현
 - [X] Customer Category Controller GET 구현
 - [X] Customer Category Service list() 구현
+
+### 가게 필터링 기능 구현3 (실제 필터링)
+- [ ] Admin Restaurant Controller URL에 regions 추가
+- [ ] Admin Restaurant Controller 변경
+- [ ] Admin Restaurant Service 변경
