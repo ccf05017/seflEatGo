@@ -270,3 +270,10 @@
 - [X] Customer Restaurant Controller URL에 regions 추가
 - [X] Customer Restaurant Controller 변경
 - [X] Customer Restaurant Service 변경
+
+## 20190907
+### 가게 필터링 기능 구현4 (category 필터링)
+- [ ] Restaurant Domain CategoryId 추가
+- [ ] Customer Restaurant Controller URL에 category 추가
+- [ ] Customer Restaurant Controller 변경
+- [ ] Customer Restaurant Service 변경
