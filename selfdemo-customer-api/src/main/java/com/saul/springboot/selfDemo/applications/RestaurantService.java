@@ -28,6 +28,11 @@ public class RestaurantService {
         return restaurants;
     }
 
+    public List<Restaurant> getRestaurants(String region) {
+
+        return restaurantRepository.findAllByAddressContaining(region);
+    }
+
     public Restaurant getRestaurant(Long id) {
 
         Restaurant restaurant = restaurantRepository

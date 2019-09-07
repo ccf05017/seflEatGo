@@ -11,4 +11,6 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
     Optional<Restaurant> findById(Long id);
 
     Restaurant save(Restaurant restaurant);
+
+    List<Restaurant> findAllByAddressContaining(String region);
 }

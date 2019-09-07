@@ -35,7 +35,7 @@ public class RestaurantControllerTests {
     private RestaurantService restaurantService;
 
     @Test
-    public void list() throws Exception {
+    public void listWithNonFiltering() throws Exception {
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
             .id(1004L)
@@ -46,6 +46,27 @@ public class RestaurantControllerTests {
         given(restaurantService.getRestaurants()).willReturn(restaurants);
 
         mvc.perform(get("/restaurants"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        StringContains.containsString("\"id\":1004")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"name\":\"Bob zip2\"")
+                ));
+    }
+
+    @Test
+    public void listWithRegionFiltering() throws Exception {
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(Restaurant.builder()
+                .id(1004L)
+                .name("Bob zip2")
+                .address("서울")
+                .build());
+
+        given(restaurantService.getRestaurants("서울")).willReturn(restaurants);
+
+        mvc.perform(get("/restaurants?region=서울"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(
                         StringContains.containsString("\"id\":1004")

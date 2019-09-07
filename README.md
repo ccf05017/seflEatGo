@@ -266,7 +266,7 @@
 - [X] Customer Category Controller GET 구현
 - [X] Customer Category Service list() 구현
 
-### 가게 필터링 기능 구현3 (실제 필터링)
-- [ ] Admin Restaurant Controller URL에 regions 추가
-- [ ] Admin Restaurant Controller 변경
-- [ ] Admin Restaurant Service 변경
+### 가게 필터링 기능 구현3 (region 필터링)
+- [X] Customer Restaurant Controller URL에 regions 추가
+- [X] Customer Restaurant Controller 변경
+- [X] Customer Restaurant Service 변경
