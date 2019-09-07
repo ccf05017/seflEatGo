@@ -10,6 +10,10 @@ GET http://localhost:8080/restaurants?region=부산
 
 ###
 
+GET http://localhost:8080/restaurants?region=서울&categoryId=2
+
+###
+
 GET http://localhost:8080/restaurants/1
 
 ###

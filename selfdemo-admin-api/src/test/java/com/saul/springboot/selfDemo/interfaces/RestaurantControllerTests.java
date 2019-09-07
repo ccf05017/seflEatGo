@@ -138,7 +138,7 @@ public class RestaurantControllerTests {
 
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\": \"Beryong\", \"address\": \"Seoul\"}"))
+                .content("{\"name\": \"Beryong\", \"address\": \"Seoul\", \"categoryId\": 1}"))
 
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location", "/restaurants/1234"))
@@ -170,7 +170,7 @@ public class RestaurantControllerTests {
     public void updateWithValidData() throws Exception {
         mvc.perform(patch("/restaurants/1")
             .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"name\": \"modified\", \"address\": \"space\"}"))
+            .content("{\"name\": \"modified\", \"address\": \"space\", \"categoryId\": 1}"))
 
             .andExpect(status().isOk());
 

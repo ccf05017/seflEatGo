@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class Restaurant {
 
     @NotEmpty
     private String address;
+
+    @NotNull
+    private Long categoryId;
     
     @Transient // JAVA 에서는 사용하고, DB 에서는 사용하지 않는 column
     @JsonInclude(JsonInclude.Include.NON_NULL)

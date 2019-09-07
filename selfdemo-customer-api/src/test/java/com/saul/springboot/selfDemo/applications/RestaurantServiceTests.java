@@ -41,12 +41,15 @@ public class RestaurantServiceTests {
         Restaurant restaurant = Restaurant.builder()
             .id(1004L)
             .name("Bob zip")
+            .categoryId(1L)
             .address("서울")
             .build();
         restaurants.add(restaurant);
 
         given(restaurantRepository.findAll()).willReturn(restaurants);
         given(restaurantRepository.findAllByAddressContaining("서울")).willReturn(restaurants);
+        given(restaurantRepository.findAllByAddressContainingAndCategoryId(
+                "서울", 1L)).willReturn(restaurants);
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
     }
 
@@ -64,6 +67,15 @@ public class RestaurantServiceTests {
 
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
+    }
+
+    @Test
+    public void getRestaurantsWithRegionAndCategoryFiltering() {
+        List<Restaurant> restaurants = restaurantService.getRestaurants("서울", 1L);
+
+        Restaurant restaurant = restaurants.get(0);
+        assertThat(restaurant.getId(), is(1004L));
+        assertThat(restaurant.getCategoryId(), is(1L));
     }
 
     @Test

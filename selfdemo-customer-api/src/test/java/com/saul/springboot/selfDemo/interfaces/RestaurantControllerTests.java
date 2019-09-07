@@ -34,46 +34,71 @@ public class RestaurantControllerTests {
     @MockBean
     private RestaurantService restaurantService;
 
+    // 임시로 안함
+//    @Test
+//    public void listWithNonFiltering() throws Exception {
+//        List<Restaurant> restaurants = new ArrayList<>();
+//        restaurants.add(Restaurant.builder()
+//            .id(1004L)
+//            .name("Bob zip2")
+//            .address("Seoul")
+//            .build());
+//
+//        given(restaurantService.getRestaurants()).willReturn(restaurants);
+//
+//        mvc.perform(get("/restaurants"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(
+//                        StringContains.containsString("\"id\":1004")
+//                ))
+//                .andExpect(content().string(
+//                        StringContains.containsString("\"name\":\"Bob zip2\"")
+//                ));
+//    }
+
+    // 임시로 안함
+//    @Test
+//    public void listWithRegionFiltering() throws Exception {
+//        List<Restaurant> restaurants = new ArrayList<>();
+//        restaurants.add(Restaurant.builder()
+//                .id(1004L)
+//                .name("Bob zip2")
+//                .address("서울")
+//                .build());
+//
+//        given(restaurantService.getRestaurants("서울")).willReturn(restaurants);
+//
+//        mvc.perform(get("/restaurants?region=서울"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(
+//                        StringContains.containsString("\"id\":1004")
+//                ))
+//                .andExpect(content().string(
+//                        StringContains.containsString("\"name\":\"Bob zip2\"")
+//                ));
+//    }
+
     @Test
-    public void listWithNonFiltering() throws Exception {
-        List<Restaurant> restaurants = new ArrayList<>();
-        restaurants.add(Restaurant.builder()
-            .id(1004L)
-            .name("Bob zip2")
-            .address("Seoul")
-            .build());
-
-        given(restaurantService.getRestaurants()).willReturn(restaurants);
-
-        mvc.perform(get("/restaurants"))
-                .andExpect(status().isOk())
-                .andExpect(content().string(
-                        StringContains.containsString("\"id\":1004")
-                ))
-                .andExpect(content().string(
-                        StringContains.containsString("\"name\":\"Bob zip2\"")
-                ));
-    }
-
-    @Test
-    public void listWithRegionFiltering() throws Exception {
+    public void listWithRegionAndCategoryFiltering() throws Exception {
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("Bob zip2")
                 .address("서울")
                 .build());
 
-        given(restaurantService.getRestaurants("서울")).willReturn(restaurants);
+        given(restaurantService.getRestaurants("서울", 1L)).willReturn(restaurants);
 
-        mvc.perform(get("/restaurants?region=서울"))
+        mvc.perform(get("/restaurants?region=서울&categoryId=1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(
                         StringContains.containsString("\"id\":1004")
                 ))
                 .andExpect(content().string(
                         StringContains.containsString("\"name\":\"Bob zip2\"")
-                ));
+                ))
+        ;
     }
 
     @Test

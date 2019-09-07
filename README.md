@@ -273,7 +273,10 @@
 
 ## 20190907
 ### 가게 필터링 기능 구현4 (category 필터링)
-- [ ] Restaurant Domain CategoryId 추가
-- [ ] Customer Restaurant Controller URL에 category 추가
-- [ ] Customer Restaurant Controller 변경
-- [ ] Customer Restaurant Service 변경
+- [X] Restaurant Domain CategoryId 추가
+- [X] Customer Restaurant Controller URL에 category 추가
+- [X] Customer Restaurant Controller 변경
+- [X] Customer Restaurant Service 변경
+
+* Restaurant 도메인에 categoryId 처음 추가 시 @NotNull 넣고 돌리면 에러 발생
+* auto-ddl 설정 하면서 null을 기본으로 넣는데 설정에 위배되서 그런 것 같음
