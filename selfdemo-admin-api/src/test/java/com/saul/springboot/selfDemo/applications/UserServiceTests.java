@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 public class UserServiceTests {
@@ -41,6 +42,27 @@ public class UserServiceTests {
 
         assertThat(resultUsers.get(0).getName()).isEqualTo("테스터");
 
+    }
+
+    @Test
+    public void addUser() {
+
+        String name = "Administrator";
+        String email = "test@gmail.com";
+
+        User mockUser = User.builder()
+                .name(name)
+                .email(email)
+                .level(3)
+                .id(1L)
+                .build();
+
+        given(userRepository.save(any())).willReturn(mockUser);
+
+        User user = userService.addUser(name, email);
+
+        assertThat(user.getId()).isEqualTo(1L);
+        assertThat(user.getLevel()).isEqualTo(3);
     }
 
 }

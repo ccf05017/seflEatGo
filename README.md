@@ -284,9 +284,9 @@
 ## 20190908
 ### 유저 관리 기능 구현
 - [X] User Domain 구현 (email, name, level)
-- [ ] User Repository Interface 구현
-- [ ] Admin User Controller, Service API GET 구현
-- [ ] Admin User Controller, Service API POST 구현
+- [X] User Repository Interface 구현
+- [X] Admin User Controller, Service API GET 구현
+- [X] Admin User Controller, Service API POST 구현
 - [ ] Admin User Controller, Service API PATCH 구현
 - [ ] Admin User Controller, Service API DELETE 구현
 
