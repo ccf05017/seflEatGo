@@ -1,0 +1,46 @@
+package com.saul.springboot.selfDemo.applications;
+
+
+import com.saul.springboot.selfDemo.domain.User;
+import com.saul.springboot.selfDemo.domain.UserRepository;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.BDDMockito.given;
+
+public class UserServiceTests {
+
+    UserService userService;
+
+    @Mock
+    UserRepository userRepository;
+
+    @Before
+    public void setup() {
+
+        MockitoAnnotations.initMocks(this);
+
+        userService = new UserService(userRepository);
+
+    }
+
+    @Test
+    public void getUsers() {
+
+        List<User> mockUsers = new ArrayList<>();
+        mockUsers.add(User.builder().name("테스터").build());
+        given(userRepository.findAll()).willReturn(mockUsers);
+
+        List<User> resultUsers = userService.getUsers();
+
+        assertThat(resultUsers.get(0).getName()).isEqualTo("테스터");
+
+    }
+
+}

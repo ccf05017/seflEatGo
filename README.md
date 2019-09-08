@@ -280,3 +280,17 @@
 
 * Restaurant 도메인에 categoryId 처음 추가 시 @NotNull 넣고 돌리면 에러 발생
 * auto-ddl 설정 하면서 null을 기본으로 넣는데 설정에 위배되서 그런 것 같음
+
+## 20190908
+### 유저 관리 기능 구현
+- [X] User Domain 구현 (email, name, level)
+- [ ] User Repository Interface 구현
+- [ ] Admin User Controller, Service API GET 구현
+- [ ] Admin User Controller, Service API POST 구현
+- [ ] Admin User Controller, Service API PATCH 구현
+- [ ] Admin User Controller, Service API DELETE 구현
+
+### 가게 필터링 기능 개선
+- [ ] Restaurant Domain 필터링이 category, region에 유연하게 작동하도록 변
+
+* 유저 삭제 기능은 실제 삭제가 아닌 레벨 조정을 통해 구현
