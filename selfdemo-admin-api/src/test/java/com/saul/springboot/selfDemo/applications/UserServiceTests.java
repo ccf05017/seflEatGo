@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
 public class UserServiceTests {
@@ -87,6 +88,24 @@ public class UserServiceTests {
 
         assertThat(updated.getName()).isEqualTo(name);
         assertThat(updated.getLevel()).isEqualTo(level);
+
+    }
+
+    @Test
+    public void deleteUser() {
+
+        User mockUser = User.builder()
+                .name("poppo")
+                .email("poppo@gmail.com")
+                .level(3)
+                .build();
+
+        given(userRepository.findById(eq(1L))).willReturn(java.util.Optional.ofNullable(mockUser));
+
+        User deactivated = userService.deactivateUser(1L);
+
+        assertThat(deactivated.isAdmin()).isEqualTo(false);
+        assertThat(deactivated.isActive()).isEqualTo(false);
 
     }
 

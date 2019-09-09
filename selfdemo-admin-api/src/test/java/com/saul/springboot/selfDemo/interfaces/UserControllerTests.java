@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -86,6 +87,18 @@ public class UserControllerTests {
         ;
 
         verify(userService).updateUser(id, name, email, level);
+
+    }
+
+    @Test
+    public void deactivate() throws Exception {
+
+        mvc.perform(delete("/users/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("{}")))
+        ;
+
+        verify(userService).deactivateUser(eq(1L));
 
     }
 

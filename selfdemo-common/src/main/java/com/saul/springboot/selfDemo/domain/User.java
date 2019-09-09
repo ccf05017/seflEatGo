@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
@@ -18,18 +21,33 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
+    @NotEmpty
     private String name;
 
-    @Setter
+    @NotEmpty
     private String email;
 
-    @Setter
+    @NotNull
     private Integer level;
+
+    public boolean isAdmin() {
+
+        return level >= 100;
+    }
 
     public void setInfo(String name, String email, Integer level) {
         this.name = name;
         this.email = email;
         this.level = level;
+    }
+
+    public boolean isActive() {
+
+        return this.level > 0;
+    }
+
+    public void deactivate() {
+
+        this.level = 0;
     }
 }

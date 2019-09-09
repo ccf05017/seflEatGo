@@ -5,6 +5,7 @@ import com.saul.springboot.selfDemo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class UserService {
             user = User.builder()
                     .name(name)
                     .email(email)
-                    .level(3)
+                    .level(100)
                     .build();
         } else {
             user = User.builder()
@@ -47,6 +48,7 @@ public class UserService {
         return saved;
     }
 
+    @Transactional
     public User updateUser(Long id, String name, String email, Integer level) {
 
         // TODO
@@ -56,5 +58,16 @@ public class UserService {
         updated.setInfo(name, email, level);
 
         return updated;
+    }
+
+    @Transactional
+    public User deactivateUser(Long userId) {
+
+        // TODO
+        // 예외 처리 수정할 것
+        User user = userRepository.findById(userId).orElse(null);
+        user.deactivate();
+
+        return user;
     }
 }

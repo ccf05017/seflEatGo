@@ -290,10 +290,11 @@
 
 ## 20190909 이어서 구현
 - [X] Admin User Controller, Service API PATCH 구현
-- [ ] Admin User Controller, Service API DELETE 구현
+- [X] Admin User Controller, Service API DELETE 구현
 - [ ] Admin User Service 예외 처리
 
 ### 가게 필터링 기능 개선
 - [ ] Restaurant Domain 필터링이 category, region에 유연하게 작동하도록 변경
 
 * 유저 삭제 기능은 실제 삭제가 아닌 레벨 조정을 통해 구현
+* Transactional 사용에 유의할 것

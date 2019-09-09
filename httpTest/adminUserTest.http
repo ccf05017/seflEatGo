@@ -1,0 +1,29 @@
+POST http://localhost:8080/users/
+Content-Type: application/json
+
+{
+  "name": "poppo",
+  "email": "poppo@gmail.com",
+  "level": 50
+}
+
+###
+
+PATCH http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "name": "ita",
+  "email": "ita@gmail.com",
+  "level": 100
+}
+
+###
+
+DELETE  http://localhost:8080/users/1
+
+###
+
+GET http://localhost:8080/users
+
+###
