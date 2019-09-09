@@ -22,7 +22,6 @@ public class ItemMenu {
     @Setter
     private Long restaurantId;
 
-//    @Getter
     private String name;
 
     @Transient // JAVA 에서만 사용되는 속성값

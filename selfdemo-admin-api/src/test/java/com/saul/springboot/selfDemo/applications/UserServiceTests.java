@@ -65,4 +65,29 @@ public class UserServiceTests {
         assertThat(user.getLevel()).isEqualTo(3);
     }
 
+    @Test
+    public void updateUser() {
+
+        Long id = 1L;
+        String name = "poppo";
+        String email = "poppo@gmail.com";
+        Integer level = 3;
+
+        given(userRepository.findById(id))
+                .willReturn(java.util.Optional.ofNullable(
+                        User.builder()
+                                .id(id)
+                                .name("Administrator")
+                                .email(email)
+                                .level(1)
+                                .build())
+                );
+
+        User updated = userService.updateUser(id, name, email, level);
+
+        assertThat(updated.getName()).isEqualTo(name);
+        assertThat(updated.getLevel()).isEqualTo(level);
+
+    }
+
 }

@@ -4,10 +4,7 @@ import com.saul.springboot.selfDemo.applications.UserService;
 import com.saul.springboot.selfDemo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -36,6 +33,16 @@ public class UserController {
         URI url = new URI("/users/" + user.getId());
 
         return ResponseEntity.created(url).body("{}");
+    }
+
+    @PatchMapping("users/{userId}")
+    public String update(
+            @PathVariable(name = "userId") Long userId,
+            @RequestBody User resource
+    ) {
+        userService.updateUser(userId, resource.getName(), resource.getEmail(), resource.getLevel());
+
+        return "{}";
     }
 
 }

@@ -16,8 +16,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -67,6 +67,25 @@ public class UserControllerTests {
                 .andExpect(header().stringValues("Location", "/users/1"))
                 .andExpect(content().string(containsString("{}")))
         ;
+
+    }
+
+    @Test
+    public void update() throws Exception {
+
+        Long id = 1L;
+        String name = "poppo";
+        String email = "poppo@gmail.com";
+        Integer level = 3;
+
+        mvc.perform(patch("/users/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"poppo\",\"email\":\"poppo@gmail.com\",\"level\":3}"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("{}")))
+        ;
+
+        verify(userService).updateUser(id, name, email, level);
 
     }
 

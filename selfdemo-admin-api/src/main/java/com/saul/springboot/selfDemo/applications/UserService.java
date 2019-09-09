@@ -25,7 +25,7 @@ public class UserService {
     public User addUser(String name, String email) {
 
         // TODO
-        // 아래 분기문 OOP스럽게 바꿀 궁리 해보자
+        // 아래 분기문 OOP 스럽게 바꿀 궁리 해보자
         User user;
 
         if (name.equals("Administrator")) {
@@ -45,5 +45,16 @@ public class UserService {
         User saved = userRepository.save(user);
 
         return saved;
+    }
+
+    public User updateUser(Long id, String name, String email, Integer level) {
+
+        // TODO
+        // Exception 처리할 것
+
+        User updated = userRepository.findById(id).orElse(null);
+        updated.setInfo(name, email, level);
+
+        return updated;
     }
 }
