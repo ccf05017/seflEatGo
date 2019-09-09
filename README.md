@@ -296,5 +296,16 @@
 ### 가게 필터링 기능 개선
 - [ ] Restaurant Domain 필터링이 category, region에 유연하게 작동하도록 변경
 
+### 회원 가입 기능 구현
+- [ ] Spring Security 의존성 추가 및 설정
+- [ ] Security 기본 페이지 삭제
+- [ ] Customer User Controller, Service API GET 구현
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
 * 유저 삭제 기능은 실제 삭제가 아닌 레벨 조정을 통해 구현
 * Transactional 사용에 유의할 것
