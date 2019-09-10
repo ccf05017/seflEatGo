@@ -310,4 +310,4 @@
 ## 20190910
 ### 회원 가입 기능 구현
 - [X] 패스워드 암호화 (Bcrypt)
-- [X] email 중복 막 (중복 시 exception 발생)
+- [X] email 중복 막기 (중복 시 exception 발생)
