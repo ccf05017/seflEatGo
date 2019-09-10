@@ -4,40 +4,54 @@ import com.saul.springboot.selfDemo.domain.User;
 import com.saul.springboot.selfDemo.domain.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 public class UserServiceTests {
 
-    UserService userService;
+    private UserService userService;
 
-    @MockBean
+    @Mock
     UserRepository userRepository;
 
     @Before
     public void setup() {
 
         MockitoAnnotations.initMocks(this);
+
         userService = new UserService(userRepository);
 
     }
 
     @Test
-    public void registerUser() {
+    public void registerTest() {
+
         String email = "poppo@gmail.com";
         String name = "poppo";
         String password = "password";
 
-        User savedMock = User.builder().id(1L).build();
+        User mockUser = User.builder()
+                .id(1L)
+                .email(email)
+                .name(name)
+                .password(password)
+                .build();
 
-        given(userRepository)
+        // TODO
+        // 여기서는 원래 given 사용 불가능한 것인지 질문
+         given(userRepository.save(any())).willReturn(mockUser);
 
-        User user = userService.registerUser(email, name, password);
+        User registered = userService.registerUser(email, name, password);
 
-        assertThat(user.getId()).isEqualTo(1L);
+        assertThat(registered.getId()).isEqualTo(1L);
+        assertThat(registered.getName()).isEqualTo("poppo");
+
+        verify(userRepository).save(any());
 
     }
 

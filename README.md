@@ -304,3 +304,5 @@
 
 * 유저 삭제 기능은 실제 삭제가 아닌 레벨 조정을 통해 구현
 * Transactional 사용에 유의할 것
+* 덜렁 거리지 말고 꼼꼼하게 확인하면서 개발 할 것
+* Repository를 MockBean 처리해서 디버깅 한참 걸림 ㅡㅡ (null pointer 발생)

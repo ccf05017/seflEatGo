@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,9 +29,14 @@ public class UserControllerTests {
     @Test
     public void create() throws Exception {
 
-        User mockUser = User.builder().id(123L).build();
+        User mockUser = User.builder()
+                .id(123L)
+                .email("poppo@gmail.com")
+                .name("poppo")
+                .password("password")
+                .build();
 
-        given(userService.registerUser(any())).willReturn(mockUser);
+        given(userService.registerUser("poppo@gmail.com", "poppo", "password")).willReturn(mockUser);
 
         mvc.perform(post("/users")
                 .contentType(MediaType.APPLICATION_JSON)

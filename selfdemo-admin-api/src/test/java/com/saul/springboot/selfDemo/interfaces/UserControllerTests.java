@@ -52,7 +52,7 @@ public class UserControllerTests {
     }
 
     @Test
-    public void create() throws Exception {
+    public void creationTest() throws Exception {
 
         String name = "Administrator";
         String email = "admin@gmail.com";

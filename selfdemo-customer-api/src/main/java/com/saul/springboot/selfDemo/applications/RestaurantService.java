@@ -44,11 +44,11 @@ public class RestaurantService {
                 .findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
 
-        List<ItemMenu> itemMenus = itemMenuRepository.findAllByRestaurantId(id);
-        restaurant.setItemMenus(itemMenus);
-
-        List<Review> reviews = reviewRepository.findAllByRestaurantId(id);
-        restaurant.setReviews(reviews);
+//        List<ItemMenu> itemMenus = itemMenuRepository.findAllByRestaurantId(id);
+//        restaurant.setItemMenus(itemMenus);
+//
+//        List<Review> reviews = reviewRepository.findAllByRestaurantId(id);
+//        restaurant.setReviews(reviews);
 
         return restaurant;
     }

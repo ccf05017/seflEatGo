@@ -32,8 +32,7 @@ public class RestaurantServiceTests {
 
         mockRestaurantRepository();
 
-        this.restaurantService = new RestaurantService(
-                restaurantRepository);
+        restaurantService = new RestaurantService(restaurantRepository);
     }
 
     private void mockRestaurantRepository() {
@@ -80,7 +79,7 @@ public class RestaurantServiceTests {
 
     @Test
     public void getRestaurantWithExisted() {
-        Restaurant restaurant = this.restaurantService.getRestaurant(1004L);
+        Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         assertThat(restaurant.getId(), is(1004L));
     }
