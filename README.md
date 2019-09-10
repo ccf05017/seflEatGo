@@ -306,3 +306,8 @@
 * Transactional 사용에 유의할 것
 * 덜렁 거리지 말고 꼼꼼하게 확인하면서 개발 할 것
 * Repository를 MockBean 처리해서 디버깅 한참 걸림 ㅡㅡ (null pointer 발생)
+
+## 20190910
+### 회원 가입 기능 구현3
+- [X] 패스워드 암호화 (Bcrypt)
+- [ ] email 중복 막 (중복 시 exception 발생)
