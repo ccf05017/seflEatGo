@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class UserServiceTests {
@@ -42,8 +43,6 @@ public class UserServiceTests {
                 .password(password)
                 .build();
 
-        // TODO
-        // 여기서는 원래 given 사용 불가능한 것인지 질문
          given(userRepository.save(any())).willReturn(mockUser);
 
         User registered = userService.registerUser(email, name, password);
@@ -52,6 +51,28 @@ public class UserServiceTests {
         assertThat(registered.getName()).isEqualTo("poppo");
 
         verify(userRepository).save(any());
+
+    }
+
+    @Test(expected = EmailExistError.class)
+    public void registerTestWithExistedEmail() {
+
+        String email = "poppo@gmail.com";
+        String name = "poppo";
+        String password = "password";
+
+        User mockUser = User.builder()
+                .id(1L)
+                .email(email)
+                .name(name)
+                .password(password)
+                .build();
+
+        given(userRepository.findByEmail(any())).willReturn(java.util.Optional.ofNullable(mockUser));
+
+        userService.registerUser(email, name, password);
+
+        verify(userRepository, never()).save(any());
 
     }
 

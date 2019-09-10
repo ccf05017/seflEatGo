@@ -308,6 +308,6 @@
 * Repository를 MockBean 처리해서 디버깅 한참 걸림 ㅡㅡ (null pointer 발생)
 
 ## 20190910
-### 회원 가입 기능 구현3
+### 회원 가입 기능 구현
 - [X] 패스워드 암호화 (Bcrypt)
-- [ ] email 중복 막 (중복 시 exception 발생)
+- [X] email 중복 막 (중복 시 exception 발생)
