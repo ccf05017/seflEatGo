@@ -299,13 +299,8 @@
 ### 회원 가입 기능 구현
 - [X] Spring Security 의존성 추가 및 설정 (필요 없는 보안 설정 제거)
 - [X] Security 기본 페이지 삭제
-- [ ] Customer User Controller, Service API GET 구현
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [X] User Domain 수정 (password 추가)
+- [X] Customer User Controller, Service API POST 구현 
 
 * 유저 삭제 기능은 실제 삭제가 아닌 레벨 조정을 통해 구현
 * Transactional 사용에 유의할 것
