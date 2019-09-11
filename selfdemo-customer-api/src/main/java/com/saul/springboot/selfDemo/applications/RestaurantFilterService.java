@@ -4,11 +4,9 @@ import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class RestaurantFilterService {
 
     @Autowired

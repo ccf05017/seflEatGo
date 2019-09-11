@@ -4,7 +4,7 @@ import com.saul.springboot.selfDemo.domain.Restaurant;
 
 import java.util.List;
 
-public class RestaurantFilterDefault implements RestaurantFilterType {
+public class RestaurantFilterBoth implements RestaurantFilterType {
 
     @Override
     public List<Restaurant> getRestaurantsByFilter(String region, Long categoryId) {

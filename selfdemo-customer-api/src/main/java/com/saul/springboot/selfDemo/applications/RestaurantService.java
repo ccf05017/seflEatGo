@@ -1,7 +1,9 @@
 package com.saul.springboot.selfDemo.applications;
 
 import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
-import com.saul.springboot.selfDemo.domain.*;
+import com.saul.springboot.selfDemo.domain.Restaurant;
+import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
+import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    @Autowired
     RestaurantFilterType restaurantFilterType;
 
     public RestaurantService(RestaurantRepository restaurantRepository) {
@@ -21,9 +24,21 @@ public class RestaurantService {
 
     public List<Restaurant> getRestaurants(RestaurantFilterDTO filterDTO) {
 
-        restaurantFilterType = filterDTO.getRestaurantFilterType();
+//        restaurantFilterType = filterDTO.getRestaurantFilterType();
+//
+//        return restaurantFilterType.getRestaurantsByFilter(filterDTO.getRegion(), filterDTO.getCategoryId());
 
-        return restaurantFilterType.getRestaurantsByFilter(filterDTO);
+//        restaurantFilterType = filterDTO.getRestaurantFilterType();
+//
+//        List<Restaurant> restaurants
+//                = restaurantFilterType.getRestaurantsByFilter(filterDTO.getRegion(), filterDTO.getCategoryId());
+
+        List<Restaurant> restaurants
+                = restaurantRepository.findAllByAddressContainingAndCategoryId(
+                        filterDTO.getRegion(), filterDTO.getCategoryId());
+
+        return restaurants;
+
     }
 
     public Restaurant getRestaurant(Long id) {

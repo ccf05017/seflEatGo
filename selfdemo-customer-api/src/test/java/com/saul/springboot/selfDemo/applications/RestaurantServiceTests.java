@@ -15,7 +15,6 @@ import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 public class RestaurantServiceTests {
@@ -65,9 +64,12 @@ public class RestaurantServiceTests {
                 .build();
 
         List<Restaurant> mockRestaurants = new ArrayList<>();
-        mockRestaurants.add(Restaurant.builder().id(1004L).address("hello").build());
+        mockRestaurants.add(Restaurant.builder()
+                .address("hello")
+                .id(1004L)
+                .build());
 
-        given(restaurantFilterType.getRestaurantsByFilter(any())).willReturn(mockRestaurants);
+        given(restaurantFilterType.getRestaurantsByFilter(null, null)).willReturn(mockRestaurants);
 
         List<Restaurant> restaurants = restaurantService.getRestaurants(mockFilterDTO);
 
