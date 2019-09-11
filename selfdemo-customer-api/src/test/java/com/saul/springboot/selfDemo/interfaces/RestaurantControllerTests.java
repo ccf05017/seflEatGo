@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -34,61 +35,98 @@ public class RestaurantControllerTests {
     @MockBean
     private RestaurantService restaurantService;
 
-    // 임시로 안함
-//    @Test
-//    public void listWithNonFiltering() throws Exception {
-//        List<Restaurant> restaurants = new ArrayList<>();
-//        restaurants.add(Restaurant.builder()
-//            .id(1004L)
-//            .name("Bob zip2")
-//            .address("Seoul")
-//            .build());
-//
-//        given(restaurantService.getRestaurants()).willReturn(restaurants);
-//
-//        mvc.perform(get("/restaurants"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(
-//                        StringContains.containsString("\"id\":1004")
-//                ))
-//                .andExpect(content().string(
-//                        StringContains.containsString("\"name\":\"Bob zip2\"")
-//                ));
-//    }
+    @Test
+    public void listWithNonFiltering() throws Exception {
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(Restaurant.builder()
+            .id(1004L)
+            .name("Bob zip2")
+            .address("Seoul")
+            .build());
 
-    // 임시로 안함
-//    @Test
-//    public void listWithRegionFiltering() throws Exception {
-//        List<Restaurant> restaurants = new ArrayList<>();
-//        restaurants.add(Restaurant.builder()
-//                .id(1004L)
-//                .name("Bob zip2")
-//                .address("서울")
-//                .build());
-//
-//        given(restaurantService.getRestaurants("서울")).willReturn(restaurants);
-//
-//        mvc.perform(get("/restaurants?region=서울"))
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(
-//                        StringContains.containsString("\"id\":1004")
-//                ))
-//                .andExpect(content().string(
-//                        StringContains.containsString("\"name\":\"Bob zip2\"")
-//                ));
-//    }
+        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+
+        mvc.perform(get("/restaurants"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        StringContains.containsString("\"id\":1004")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"name\":\"Bob zip2\"")
+                ));
+    }
+
 
     @Test
-    public void listWithRegionAndCategoryFiltering() throws Exception {
+    public void listWithRegionFiltering() throws Exception {
+        String address = "서울";
+        Long categoryId = null;
+
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
                 .id(1004L)
-                .categoryId(1L)
                 .name("Bob zip2")
-                .address("서울")
+                .address(address)
                 .build());
 
-        given(restaurantService.getRestaurants("서울", 1L)).willReturn(restaurants);
+        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+
+        mvc.perform(get("/restaurants?region=서울"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        StringContains.containsString("\"id\":1004")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"name\":\"Bob zip2\"")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"address\":\"서울\"")
+                ))
+        ;
+    }
+
+    @Test
+    public void listWithCategoryIdFiltering() throws Exception {
+        String address = null;
+        Long categoryId = 1L;
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(Restaurant.builder()
+                .id(1004L)
+                .name("Bob zip2")
+                .categoryId(1L)
+                .build());
+
+        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+
+        mvc.perform(get("/restaurants?categoryId=1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        StringContains.containsString("\"id\":1004")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"name\":\"Bob zip2\"")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"categoryId\":1")
+                ))
+        ;
+    }
+
+    @Test
+    public void listWithRegionAndCategoryFiltering() throws Exception {
+        String address = "서울";
+        Long categoryId = 1L;
+
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(Restaurant.builder()
+                .id(1004L)
+                .categoryId(categoryId)
+                .name("Bob zip2")
+                .address(address)
+                .build());
+
+        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
 
         mvc.perform(get("/restaurants?region=서울&categoryId=1"))
                 .andExpect(status().isOk())
@@ -97,6 +135,12 @@ public class RestaurantControllerTests {
                 ))
                 .andExpect(content().string(
                         StringContains.containsString("\"name\":\"Bob zip2\"")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"address\":\"서울\"")
+                ))
+                .andExpect(content().string(
+                        StringContains.containsString("\"categoryId\":1")
                 ))
         ;
     }

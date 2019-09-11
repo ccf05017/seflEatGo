@@ -1,5 +1,6 @@
 package com.saul.springboot.selfDemo.applications;
 
+import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
@@ -14,18 +15,18 @@ import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 public class RestaurantServiceTests {
-
-    // 얘만으로는 DI 테스트를 할 수 없다
     private RestaurantService restaurantService;
 
     @Mock
     private RestaurantRepository restaurantRepository;
 
-    // Test 실행하기 전에 미리 수행되는 동작
-    // DI를 직접 해주도록 설정
+    @Mock
+    private RestaurantFilterType restaurantFilterType;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -47,6 +48,7 @@ public class RestaurantServiceTests {
 
         given(restaurantRepository.findAll()).willReturn(restaurants);
         given(restaurantRepository.findAllByAddressContaining("서울")).willReturn(restaurants);
+        given(restaurantRepository.findAllByCategoryId(1L)).willReturn(restaurants);
         given(restaurantRepository.findAllByAddressContainingAndCategoryId(
                 "서울", 1L)).willReturn(restaurants);
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
@@ -54,27 +56,76 @@ public class RestaurantServiceTests {
 
     @Test
     public void getRestaurantsWithNonFiltering() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants();
+        String region = null;
+        Long categoryId = null;
+
+        RestaurantFilterDTO mockFilterDTO = RestaurantFilterDTO.builder()
+                .region(region)
+                .categoryId(categoryId)
+                .build();
+
+        List<Restaurant> mockRestaurants = new ArrayList<>();
+        mockRestaurants.add(Restaurant.builder().id(1004L).address("hello").build());
+
+        given(restaurantFilterType.getRestaurantsByFilter(any())).willReturn(mockRestaurants);
+
+        List<Restaurant> restaurants = restaurantService.getRestaurants(mockFilterDTO);
 
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
+        assertThat(restaurant.getAddress(), is("hello"));
     }
 
     @Test
     public void getRestaurantsWithRegionFiltering() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants("서울");
+        String region = "서울";
+        Long categoryId = null;
+
+        RestaurantFilterDTO mockFilterDTO = RestaurantFilterDTO.builder()
+                .region(region)
+                .categoryId(categoryId)
+                .build();
+
+        List<Restaurant> restaurants = restaurantService.getRestaurants(mockFilterDTO);
 
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
+        assertThat(restaurant.getAddress(), is("서울"));
     }
 
     @Test
-    public void getRestaurantsWithRegionAndCategoryFiltering() {
-        List<Restaurant> restaurants = restaurantService.getRestaurants("서울", 1L);
+    public void getRestaurantsWithCategoryIdFiltering() {
+        String region = null;
+        Long categoryId = 1L;
+
+        RestaurantFilterDTO mockFilterDTO = RestaurantFilterDTO.builder()
+                .region(region)
+                .categoryId(categoryId)
+                .build();
+
+        List<Restaurant> restaurants = restaurantService.getRestaurants(mockFilterDTO);
 
         Restaurant restaurant = restaurants.get(0);
         assertThat(restaurant.getId(), is(1004L));
         assertThat(restaurant.getCategoryId(), is(1L));
+    }
+
+    @Test
+    public void getRestaurantsWithRegionAndCategoryFiltering() {
+        String region = "서울";
+        Long categoryId = 1L;
+
+        RestaurantFilterDTO mockFilterDTO = RestaurantFilterDTO.builder()
+                .region(region)
+                .categoryId(categoryId)
+                .build();
+
+        List<Restaurant> restaurants = restaurantService.getRestaurants(mockFilterDTO);
+
+        Restaurant restaurant = restaurants.get(0);
+        assertThat(restaurant.getId(), is(1004L));
+        assertThat(restaurant.getCategoryId(), is(1L));
+        assertThat(restaurant.getAddress(), is("서울"));
     }
 
     @Test
