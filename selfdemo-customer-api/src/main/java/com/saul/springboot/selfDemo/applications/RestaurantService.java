@@ -1,6 +1,5 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;
@@ -19,7 +18,7 @@ public class RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public List<Restaurant> getRestaurants(RestaurantFilterDTO filterDTO) {
+    public List<Restaurant> getRestaurants(String region, Long categoryId) {
 
 //        restaurantFilterType = filterDTO.getRestaurantFilterType();
 //
@@ -32,7 +31,7 @@ public class RestaurantService {
 
         List<Restaurant> restaurants
                 = restaurantRepository.findAllByAddressContainingAndCategoryId(
-                        filterDTO.getRegion(), filterDTO.getCategoryId());
+                        region, categoryId);
 
         return restaurants;
 

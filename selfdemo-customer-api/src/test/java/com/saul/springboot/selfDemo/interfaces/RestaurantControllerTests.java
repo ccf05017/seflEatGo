@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -44,7 +43,7 @@ public class RestaurantControllerTests {
             .address("Seoul")
             .build());
 
-        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+        given(restaurantService.getRestaurants(null, null)).willReturn(restaurants);
 
         mvc.perform(get("/restaurants"))
                 .andExpect(status().isOk())
@@ -69,7 +68,7 @@ public class RestaurantControllerTests {
                 .address(address)
                 .build());
 
-        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+        given(restaurantService.getRestaurants("서울", null)).willReturn(restaurants);
 
         mvc.perform(get("/restaurants?region=서울"))
                 .andExpect(status().isOk())
@@ -87,7 +86,7 @@ public class RestaurantControllerTests {
 
     @Test
     public void listWithCategoryIdFiltering() throws Exception {
-        String address = null;
+        String region = null;
         Long categoryId = 1L;
 
         List<Restaurant> restaurants = new ArrayList<>();
@@ -97,7 +96,7 @@ public class RestaurantControllerTests {
                 .categoryId(1L)
                 .build());
 
-        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+        given(restaurantService.getRestaurants(region, categoryId)).willReturn(restaurants);
 
         mvc.perform(get("/restaurants?categoryId=1"))
                 .andExpect(status().isOk())
@@ -126,7 +125,7 @@ public class RestaurantControllerTests {
                 .address(address)
                 .build());
 
-        given(restaurantService.getRestaurants(any())).willReturn(restaurants);
+        given(restaurantService.getRestaurants("서울", 1L)).willReturn(restaurants);
 
         mvc.perform(get("/restaurants?region=서울&categoryId=1"))
                 .andExpect(status().isOk())

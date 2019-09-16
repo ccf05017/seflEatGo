@@ -1,6 +1,6 @@
 package com.saul.springboot.selfDemo.interfaces;
 
-import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
+import com.saul.springboot.selfDemo.DTO.RestaurantSearchDto;
 import com.saul.springboot.selfDemo.applications.RestaurantService;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,12 @@ public class RestaurantController {
 
     @GetMapping("/restaurants")
     public List<Restaurant> list(
-            RestaurantFilterDTO filterDTO
+            RestaurantSearchDto searchDto
     ) {
 
-        List<Restaurant> restaurants = restaurantService.getRestaurants(filterDTO);
+        List<Restaurant> restaurants = restaurantService.getRestaurants(
+                searchDto.getRegion(),
+                searchDto.getCategoryId());
 
         return restaurants;
     }
