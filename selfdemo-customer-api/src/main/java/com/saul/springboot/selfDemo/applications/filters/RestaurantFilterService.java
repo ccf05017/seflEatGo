@@ -1,4 +1,4 @@
-package com.saul.springboot.selfDemo.applications;
+package com.saul.springboot.selfDemo.applications.filters;
 
 import com.saul.springboot.selfDemo.DTO.RestaurantFilterDTO;
 import com.saul.springboot.selfDemo.domain.Restaurant;

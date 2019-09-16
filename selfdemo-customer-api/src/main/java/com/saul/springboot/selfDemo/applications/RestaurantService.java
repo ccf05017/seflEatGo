@@ -15,9 +15,6 @@ public class RestaurantService {
     @Autowired
     RestaurantRepository restaurantRepository;
 
-    @Autowired
-    RestaurantFilterType restaurantFilterType;
-
     public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
     }

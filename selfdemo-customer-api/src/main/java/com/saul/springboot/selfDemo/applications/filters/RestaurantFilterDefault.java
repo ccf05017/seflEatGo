@@ -1,10 +1,10 @@
-package com.saul.springboot.selfDemo.applications;
+package com.saul.springboot.selfDemo.applications.filters;
 
 import com.saul.springboot.selfDemo.domain.Restaurant;
 
 import java.util.List;
 
-public class RestaurantFilterCategoryId implements RestaurantFilterType {
+public class RestaurantFilterDefault implements RestaurantFilterType {
 
     @Override
     public List<Restaurant> getRestaurantsByFilter(String region, Long categoryId) {

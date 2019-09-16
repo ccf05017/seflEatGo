@@ -313,3 +313,17 @@
 ### 회원 가입 기능 구현
 - [X] 패스워드 암호화 (Bcrypt)
 - [X] email 중복 막기 (중복 시 exception 발생)
+
+## 20190911
+### 인증 기능 구현
+- [ ] /session POST API 구현
+- [ ] POST return content에 accessToken 부여
+- [ ] SessionDto 구현 (lombok data 활용)
+- [ ] UserService에서 인증 처리하도록 구현
+
+## 20190916
+### Restaurnat Filter 기능 개선 버전 업데이트
+- [ ] RestaurantSpecification 구현
+- [ ] RestaurantSpecificationBuilder 구현
+- [ ] SearchCriteria 구현
+- [ ] 기존 Restaurant Controller, Service 적용

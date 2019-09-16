@@ -1,6 +1,6 @@
 package com.saul.springboot.selfDemo.DTO;
 
-import com.saul.springboot.selfDemo.applications.*;
+import com.saul.springboot.selfDemo.applications.filters.*;
 import lombok.*;
 
 @Builder
