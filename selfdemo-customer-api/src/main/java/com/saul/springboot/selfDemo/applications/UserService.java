@@ -42,4 +42,8 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public void authenticate(String email, String password) {
+        // TODO: 기능 세부구현 필요
+    }
 }
