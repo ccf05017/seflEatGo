@@ -316,13 +316,13 @@
 
 ## 20190911
 ### 인증 기능 구현
-- [ ] /session POST API 구현
-- [ ] POST return content에 accessToken 부여
+- [X] /session POST API 구현
+- [X] POST return content에 accessToken 부여
 - [ ] SessionDto 구현 (lombok data 활용)
 - [ ] UserService에서 인증 처리하도록 구현
 
 ## 20190916
-### Restaurnat Filter 기능 개선 버전 업데이트
+### Restaurnat Filter 기능 개선 버전 업데이트 (연기)
 - [ ] RestaurantSpecification 구현
 - [ ] RestaurantSpecificationBuilder 구현
 - [ ] SearchCriteria 구현
