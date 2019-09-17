@@ -336,3 +336,5 @@
 - [X] User Service test 작성 (올바른 케이스, 없는 이메일, 패스워드 틀림)
 - [X] Password Encoder 의존성 주입 형태로 변경
 - [X] 기존 테스트 코드 변경
+- [X] PasswordEncoder bean 생성
+- [X] User password 기반으로 AccessToken 생성하도록 변경

@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.interfaces;
 
 import com.saul.springboot.selfDemo.applications.UserService;
+import com.saul.springboot.selfDemo.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +22,13 @@ public class SessionController {
             @RequestBody SessionRequestDto sessionRequestDto
     ) throws URISyntaxException {
 
-        String accessToken = "ACCESSTOKEN";
-        userService.authenticate(sessionRequestDto.getEmail(), sessionRequestDto.getPassword());
+        User authenticated = userService.authenticate(
+                sessionRequestDto.getEmail(),
+                sessionRequestDto.getPassword());
 
-        SessionResponseDto sessionResponseDto = SessionResponseDto.builder().accessToken(accessToken).build();
+        SessionResponseDto sessionResponseDto = SessionResponseDto.builder()
+                .accessToken(authenticated.getAccessToken())
+                .build();
 
         String url = "/session";
 

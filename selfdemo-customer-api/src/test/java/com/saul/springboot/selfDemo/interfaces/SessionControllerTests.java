@@ -3,6 +3,7 @@ package com.saul.springboot.selfDemo.interfaces;
 import com.saul.springboot.selfDemo.applications.EmailNonExistError;
 import com.saul.springboot.selfDemo.applications.UserService;
 import com.saul.springboot.selfDemo.applications.WrongPasswordError;
+import com.saul.springboot.selfDemo.domain.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,21 @@ public class SessionControllerTests {
     public void tryLoginWithValidData() throws Exception {
 
         String email = "poppo@gmail.com";
-        String password = "test";
+        String password = "ACCESSTOKEN";
+
+        User mockUser = User.builder().password(password).build();
+
+        given(userService.authenticate(eq(email), eq(password))).willReturn(mockUser);
 
         mvc.perform(post("/session")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                          "    \"email\":\"poppo@gmail.com\",\n" +
-                         "    \"password\":\"test\"\n" +
+                         "    \"password\":\"ACCESSTOKEN\"\n" +
                          "}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().stringValues("Location", "/session"))
-                .andExpect(content().string("{\"accessToken\":\"ACCESSTOKEN\"}"))
+                .andExpect(content().string("{\"accessToken\":\"ACCESSTOKE\"}"))
         ;
 
         verify(userService).authenticate(email, password);
