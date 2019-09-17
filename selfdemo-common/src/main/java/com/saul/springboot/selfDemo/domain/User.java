@@ -1,6 +1,9 @@
 package com.saul.springboot.selfDemo.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,5 +53,14 @@ public class User {
     public void deactivate() {
 
         this.level = 0;
+    }
+
+    public String getAccessToken() {
+
+        if (this.password == null) {
+            return "";
+        }
+
+        return this.password.substring(0, 10);
     }
 }

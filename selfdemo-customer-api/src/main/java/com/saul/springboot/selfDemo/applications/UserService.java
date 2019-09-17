@@ -3,7 +3,6 @@ package com.saul.springboot.selfDemo.applications;
 import com.saul.springboot.selfDemo.domain.User;
 import com.saul.springboot.selfDemo.domain.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +13,13 @@ public class UserService {
 
     UserRepository userRepository;
 
+    PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
 
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -30,7 +32,6 @@ public class UserService {
         }
 
         // Password Encryption
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encryptedPassword = passwordEncoder.encode(password);
 
         User user = User.builder()
@@ -41,5 +42,18 @@ public class UserService {
                 .build();
 
         return userRepository.save(user);
+    }
+
+    public User authenticate(String email, String password) {
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new EmailNonExistError(email));
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+
+            throw new WrongPasswordError();
+        }
+
+        return user;
+
     }
 }

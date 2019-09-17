@@ -1,6 +1,5 @@
 package com.saul.springboot.selfDemo.interfaces;
 
-import com.saul.springboot.selfDemo.DTO.RestaurantSearchDto;
 import com.saul.springboot.selfDemo.applications.RestaurantService;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;

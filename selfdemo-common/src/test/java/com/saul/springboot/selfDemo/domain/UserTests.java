@@ -25,4 +25,21 @@ public class UserTests {
 
     }
 
+    @Test
+    public void getAccessTokenWithPassword() {
+
+        User user = User.builder().password("ACCESSTOKEN").build();
+
+        assertThat(user.getAccessToken()).isEqualTo("ACCESSTOKE");
+
+    }
+
+    @Test
+    public void getAccessTokenWithoutPassword() {
+
+        User user = new User();
+
+        assertThat(user.getAccessToken()).isEqualTo("");
+
+    }
 }

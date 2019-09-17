@@ -1,6 +1,6 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.DTO.RestaurantSearchDto;
+import com.saul.springboot.selfDemo.interfaces.RestaurantSearchDto;
 import com.saul.springboot.selfDemo.domain.Restaurant;
 import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
 import com.saul.springboot.selfDemo.domain.RestaurantRepository;

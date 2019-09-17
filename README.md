@@ -316,14 +316,25 @@
 
 ## 20190911
 ### 인증 기능 구현
-- [ ] /session POST API 구현
-- [ ] POST return content에 accessToken 부여
-- [ ] SessionDto 구현 (lombok data 활용)
-- [ ] UserService에서 인증 처리하도록 구현
+- [X] /session POST API 구현
+- [X] POST return content에 accessToken 부여
+- [X] SessionDto 구현 (lombok data 활용, Application 계층에 생)
+- [X] UserService에서 인증 처리하도록 구현
 
 ## 20190916
-### Restaurnat Filter 기능 개선 버전 업데이트
+### Restaurnat Filter 기능 개선 버전 업데이트 (연기)
 - [ ] RestaurantSpecification 구현
 - [ ] RestaurantSpecificationBuilder 구현
 - [ ] SearchCriteria 구현
 - [ ] 기존 Restaurant Controller, Service 적용
+
+## 20190917
+### 인증 기능 구현
+- [X] Session Request, Respons Dto 분리 (다시 interfaces 패키지로 이동)
+- [X] Session Controller 예외 처리 (패스워드 틀린 경우, 계정 없는 경우)
+- [X] User Service authenticate 구현
+- [X] User Service test 작성 (올바른 케이스, 없는 이메일, 패스워드 틀림)
+- [X] Password Encoder 의존성 주입 형태로 변경
+- [X] 기존 테스트 코드 변경
+- [X] PasswordEncoder bean 생성
+- [X] User password 기반으로 AccessToken 생성하도록 변경
