@@ -1,11 +1,11 @@
-package com.saul.springboot.selfDemo.applications;
+package com.saul.springboot.selfDemo.interfaces;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class TokenDto {
+public class SessionResponseDto {
 
     private String accessToken;
 

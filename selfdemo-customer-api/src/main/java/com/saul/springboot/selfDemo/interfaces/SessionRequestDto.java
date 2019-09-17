@@ -1,11 +1,11 @@
-package com.saul.springboot.selfDemo.applications;
+package com.saul.springboot.selfDemo.interfaces;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class UserLoginDto {
+public class SessionRequestDto {
 
     private String email;
     private String password;

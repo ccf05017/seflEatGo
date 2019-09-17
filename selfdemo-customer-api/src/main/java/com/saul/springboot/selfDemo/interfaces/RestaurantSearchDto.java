@@ -1,4 +1,4 @@
-package com.saul.springboot.selfDemo.DTO;
+package com.saul.springboot.selfDemo.interfaces;
 
 import lombok.*;
 

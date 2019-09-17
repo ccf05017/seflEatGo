@@ -318,7 +318,7 @@
 ### 인증 기능 구현
 - [X] /session POST API 구현
 - [X] POST return content에 accessToken 부여
-- [X] SessionDto 구현 (lombok data 활용, Application 계층에 생성)
+- [X] SessionDto 구현 (lombok data 활용, Application 계층에 생)
 - [X] UserService에서 인증 처리하도록 구현
 
 ## 20190916
@@ -327,3 +327,8 @@
 - [ ] RestaurantSpecificationBuilder 구현
 - [ ] SearchCriteria 구현
 - [ ] 기존 Restaurant Controller, Service 적용
+
+## 20190917
+### 인증 기능 구현
+- [X] Session Request, Respons Dto 분리 (다시 interfaces 패키지로 이동)
+- [X] Session Controller 예외 처리 (패스워드 틀린 경우, 계정 없는 경우)

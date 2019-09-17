@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.DTO;
 
 
+import com.saul.springboot.selfDemo.interfaces.RestaurantSearchDto;
 import org.junit.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
