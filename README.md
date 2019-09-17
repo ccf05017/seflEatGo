@@ -332,3 +332,7 @@
 ### 인증 기능 구현
 - [X] Session Request, Respons Dto 분리 (다시 interfaces 패키지로 이동)
 - [X] Session Controller 예외 처리 (패스워드 틀린 경우, 계정 없는 경우)
+- [X] User Service authenticate 구현
+- [X] User Service test 작성 (올바른 케이스, 없는 이메일, 패스워드 틀림)
+- [X] Password Encoder 의존성 주입 형태로 변경
+- [X] 기존 테스트 코드 변경
