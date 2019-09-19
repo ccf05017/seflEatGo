@@ -2,6 +2,7 @@ package com.saul.springboot.selfDemo.interfaces;
 
 import com.saul.springboot.selfDemo.applications.UserService;
 import com.saul.springboot.selfDemo.domain.User;
+import com.saul.springboot.selfDemo.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,9 @@ public class SessionController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    JwtUtil jwtUtil;
+
     @PostMapping("/session")
     public ResponseEntity<SessionResponseDto> login(
             @RequestBody SessionRequestDto sessionRequestDto
@@ -27,7 +31,7 @@ public class SessionController {
                 sessionRequestDto.getPassword());
 
         SessionResponseDto sessionResponseDto = SessionResponseDto.builder()
-                .accessToken(authenticated.getAccessToken())
+                .accessToken(jwtUtil.createToken(authenticated.getId(), authenticated.getName()))
                 .build();
 
         String url = "/session";

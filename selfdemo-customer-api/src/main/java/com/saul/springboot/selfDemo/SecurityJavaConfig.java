@@ -1,5 +1,7 @@
 package com.saul.springboot.selfDemo;
 
+import com.saul.springboot.selfDemo.utils.JwtUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${jwt.secret}")
+    private String secret;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -27,6 +32,14 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
+    }
+
+    // 다른 모듈의 bean을 불러올 때는 config에서 주입시켜야 한다.
+    // 이 경우 common에서 날라옴
+    @Bean
+    public JwtUtil jwtUtil() {
+
+        return new JwtUtil(secret);
     }
 
 }
