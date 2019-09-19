@@ -4,6 +4,7 @@ import com.saul.springboot.selfDemo.applications.EmailNonExistError;
 import com.saul.springboot.selfDemo.applications.UserService;
 import com.saul.springboot.selfDemo.applications.WrongPasswordError;
 import com.saul.springboot.selfDemo.domain.User;
+import com.saul.springboot.selfDemo.utils.JwtUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -29,28 +30,33 @@ public class SessionControllerTests {
     @MockBean
     UserService userService;
 
+    @MockBean
+    JwtUtil jwtUtil;
+
     @Test
     public void tryLoginWithValidData() throws Exception {
 
+        String name = "poppo";
+        Long id = 33L;
         String email = "poppo@gmail.com";
-        String password = "ACCESSTOKEN";
+        String password = "password";
 
-        User mockUser = User.builder().password(password).build();
+        User mockUser = User.builder().id(id).name(name).build();
 
         given(userService.authenticate(eq(email), eq(password))).willReturn(mockUser);
+        given(jwtUtil.createToken(eq(id), eq(name))).willReturn("header.body.claim");
 
         mvc.perform(post("/session")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                          "    \"email\":\"poppo@gmail.com\",\n" +
-                         "    \"password\":\"ACCESSTOKEN\"\n" +
+                         "    \"password\":\"password\"\n" +
                          "}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().stringValues("Location", "/session"))
-                .andExpect(content().string("{\"accessToken\":\"ACCESSTOKE\"}"))
+                .andExpect(content().string(containsString("\"accessToken\":")))
+                .andExpect(content().string(containsString(".")))
         ;
-
-        verify(userService).authenticate(email, password);
 
     }
 

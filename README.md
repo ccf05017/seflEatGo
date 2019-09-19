@@ -338,3 +338,11 @@
 - [X] 기존 테스트 코드 변경
 - [X] PasswordEncoder bean 생성
 - [X] User password 기반으로 AccessToken 생성하도록 변경
+
+## 20190918
+### JWT 구현
+- [X] JwtUtil Component 구현 및 의존성 주입
+- [X] JwtUtil createToken 구현
+- [X] User의 불필요한 메서드 제거
+- [X] JJWT 의존성 가져오기
+- [X] resource를 통해 jwt 시크릿 키 가져옴
