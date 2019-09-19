@@ -346,3 +346,10 @@
 - [X] User의 불필요한 메서드 제거
 - [X] JJWT 의존성 가져오기
 - [X] resource를 통해 jwt 시크릿 키 가져옴
+
+## 201090919
+### 인가 기능 구현
+- [ ] JwtAuthentication 필터 추가 (Spring Security 설정에 추가)
+- [ ] Stateless Session 설정
+- [ ] Spring 내부 authentication 구현
+- [ ] 나중에 authentication filter 테스트 작성해보기
