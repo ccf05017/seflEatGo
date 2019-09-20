@@ -1,5 +1,6 @@
 package com.saul.springboot.selfDemo.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -24,5 +25,16 @@ public class JwtUtil {
                 .compact();
 
         return token;
+    }
+
+    public Claims getClaims(String token) {
+
+        Claims claims = Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(token)
+                .getBody()
+        ;
+
+        return claims;
     }
 }
