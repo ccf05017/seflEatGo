@@ -1,5 +1,6 @@
 package com.saul.springboot.selfDemo.utils;
 
+import io.jsonwebtoken.Claims;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,6 +27,18 @@ public class JwtUtilTest {
         String jwtToken = jwtUtil.createToken(userId, userName);
 
         assertThat(jwtToken).contains(".");
+    }
+
+    @Test
+    public void getClaims() {
+
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMzLCJ1c2VyTmFtZSI6InBvcHBvIn0.urySBGTtV3UuR45LysoDkvRoX0cASX6dE3a1KLBj0DM";
+
+        Claims claims = jwtUtil.getClaims(token);
+
+        assertThat(claims.get("userId", Long.class)).isEqualTo(33L);
+        assertThat(claims.get("userName")).isEqualTo("poppo");
+
     }
 
 }

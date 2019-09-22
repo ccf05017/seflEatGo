@@ -1,5 +1,6 @@
 package com.saul.springboot.selfDemo;
 
+import com.saul.springboot.selfDemo.filters.JwtAuthenticationFilter;
 import com.saul.springboot.selfDemo.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -7,8 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.servlet.Filter;
 
 @Configuration
 @EnableWebSecurity
@@ -20,10 +24,19 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        // Bean 의존성 주입
+        Filter filter = new JwtAuthenticationFilter(
+                authenticationManager(),
+                jwtUtil());
+
         http.cors().disable()
             .csrf().disable()
             .formLogin().disable()
             .headers().frameOptions().disable()
+            .and()
+            .addFilter(filter)
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         ;
 
     }
