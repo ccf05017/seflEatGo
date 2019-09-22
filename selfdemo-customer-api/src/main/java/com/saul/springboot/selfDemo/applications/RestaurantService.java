@@ -1,8 +1,6 @@
 package com.saul.springboot.selfDemo.applications;
 
-import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
+import com.saul.springboot.selfDemo.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +11,9 @@ public class RestaurantService {
 
     @Autowired
     RestaurantRepository restaurantRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
 
     public RestaurantService(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
@@ -42,6 +43,9 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository
                 .findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
+
+        List<Review> reviews = reviewRepository.findAllByRestaurantId(id);
+        restaurant.setReviews(reviews);
 
         return restaurant;
     }

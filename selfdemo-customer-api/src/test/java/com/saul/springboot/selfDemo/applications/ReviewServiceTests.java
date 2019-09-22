@@ -31,15 +31,22 @@ public class ReviewServiceTests {
     @Test
     public void addReivew() {
 
-        Review review = Review.builder()
-                .writer("poppo")
+        Long restaurantId = 1L;
+        String writer = "poppo";
+        Integer score = 3;
+        String description = "JMT";
+
+        Review mockReview = Review.builder()
                 .id(1L)
-                .score(3)
+                .restaurantId(restaurantId)
+                .writer(writer)
+                .score(score)
+                .description(description)
                 .build();
 
-        given(reviewRepository.save(any())).willReturn(review);
+        given(reviewRepository.save(any())).willReturn(mockReview);
 
-        Review saved = reviewService.addReview(1L, review);
+        Review saved = reviewService.addReview(restaurantId, writer, score, description);
 
         assertThat(saved.getId(), is(1L));
 

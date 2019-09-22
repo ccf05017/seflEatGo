@@ -353,5 +353,9 @@
 - [X] Stateless Session 설정
 - [X] Spring 내부 authentication 구현
 - [ ] 나중에 authentication filter 테스트 작성해보기
+- [X] Customer Review Controller 테스트 및 구현 변경 (Authentication 받도록)
+- [X] addReview 함수 시그니처 변경
 
 * JwtAuthenticationFilter에서 Security Context가 뭔지 알아볼 것
+* Entity 통채로 레이어 넘어다니는 이상한 짓은 지양하자
+* DTO가 컨트롤러를 벗어나는 이상한 짓도 자제하자
