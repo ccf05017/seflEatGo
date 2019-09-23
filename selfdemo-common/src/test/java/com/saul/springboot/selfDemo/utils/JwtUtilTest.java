@@ -24,7 +24,7 @@ public class JwtUtilTest {
         Long userId = 33L;
         String userName = "poppo";
 
-        String jwtToken = jwtUtil.createToken(userId, userName);
+        String jwtToken = jwtUtil.createToken(userId, userName, null);
 
         assertThat(jwtToken).contains(".");
     }

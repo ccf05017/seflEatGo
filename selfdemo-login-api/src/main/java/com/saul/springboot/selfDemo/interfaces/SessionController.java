@@ -26,18 +26,21 @@ public class SessionController {
             @RequestBody SessionRequestDto sessionRequestDto
     ) throws URISyntaxException {
 
-        User authenticated = userService.authenticate(
+        User authenticatedUser = userService.authenticate(
                 sessionRequestDto.getEmail(),
                 sessionRequestDto.getPassword());
 
         SessionResponseDto sessionResponseDto = SessionResponseDto.builder()
-                .accessToken(jwtUtil.createToken(authenticated.getId(), authenticated.getName()))
+                .accessToken(jwtUtil.createToken(
+                        authenticatedUser.getId(),
+                        authenticatedUser.getName(),
+                        authenticatedUser.isRestaurantOwner() ? authenticatedUser.getRestaurantId() : null
+                ))
                 .build();
 
         String url = "/session";
 
         return ResponseEntity.created(new URI(url)).body(sessionResponseDto);
-
     }
 
 }

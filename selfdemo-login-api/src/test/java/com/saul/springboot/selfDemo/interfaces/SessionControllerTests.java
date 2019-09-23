@@ -41,10 +41,10 @@ public class SessionControllerTests {
         String email = "poppo@gmail.com";
         String password = "password";
 
-        User mockUser = User.builder().id(id).name(name).build();
+        User mockUser = User.builder().id(id).name(name).level(1).build();
 
         given(userService.authenticate(eq(email), eq(password))).willReturn(mockUser);
-        given(jwtUtil.createToken(eq(id), eq(name))).willReturn("header.body.claim");
+        given(jwtUtil.createToken(id, name, null)).willReturn("header.body.claim");
 
         mvc.perform(post("/session")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -52,6 +52,38 @@ public class SessionControllerTests {
                          "    \"email\":\"poppo@gmail.com\",\n" +
                          "    \"password\":\"password\"\n" +
                          "}"))
+                .andExpect(status().isCreated())
+                .andExpect(header().stringValues("Location", "/session"))
+                .andExpect(content().string(containsString("\"accessToken\":")))
+                .andExpect(content().string(containsString(".")))
+        ;
+
+    }
+
+    @Test
+    public void tryLoginWithValidDataAndRestaurantOwner() throws Exception {
+
+        String name = "poppo";
+        Long id = 33L;
+        String email = "poppo@gmail.com";
+        String password = "password";
+
+        User mockUser = User.builder()
+                .id(id)
+                .name(name)
+                .level(50)
+                .restaurantId(3333L)
+                .build();
+
+        given(userService.authenticate(eq(email), eq(password))).willReturn(mockUser);
+        given(jwtUtil.createToken(id, name, 3333L)).willReturn("header.body.claim");
+
+        mvc.perform(post("/session")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "    \"email\":\"poppo@gmail.com\",\n" +
+                        "    \"password\":\"password\"\n" +
+                        "}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().stringValues("Location", "/session"))
                 .andExpect(content().string(containsString("\"accessToken\":")))
