@@ -359,3 +359,8 @@
 * JwtAuthenticationFilter에서 Security Context가 뭔지 알아볼 것
 * Entity 통채로 레이어 넘어다니는 이상한 짓은 지양하자
 * DTO가 컨트롤러를 벗어나는 이상한 짓도 자제하자
+
+## 20190923
+### 로그인 API 분리
+- [X] 새로운 모듈 생성
+- [X] 새로운 모듈로 기존의 login 기능 모두 이관

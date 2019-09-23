@@ -9,13 +9,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8080/restaurants/1/reviews
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMzLCJ1c2VyTmFtZSI6InBvcHBvIn0.urySBGTtV3UuR45LysoDkvRoX0cASX6dE3a1KLBj0DM
+POST http://localhost:8080/restaurants/2/reviews
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoicG9wcG8ifQ.8L4mLzI9RJGPsUdwzfhlpBTmX800T9lJqIZYsTOfRGw
 Content-Type: application/json
 
 {
-  "description": "JMTGR",
-  "score": 5
+  "description": "soso",
+  "score": 3
 }
 
 ###

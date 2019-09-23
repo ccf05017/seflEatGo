@@ -1,9 +1,7 @@
 package com.saul.springboot.selfDemo.applications;
 
+import com.saul.springboot.selfDemo.domain.*;
 import com.saul.springboot.selfDemo.interfaces.RestaurantSearchDto;
-import com.saul.springboot.selfDemo.domain.Restaurant;
-import com.saul.springboot.selfDemo.domain.RestaurantNotFoundException;
-import com.saul.springboot.selfDemo.domain.RestaurantRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,13 +21,17 @@ public class RestaurantServiceTests {
     @Mock
     private RestaurantRepository restaurantRepository;
 
+    @Mock
+    private ReviewRepository reviewRepository;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
         mockRestaurantRepository();
+        mockReviewRepository();
 
-        restaurantService = new RestaurantService(restaurantRepository);
+        restaurantService = new RestaurantService(restaurantRepository, reviewRepository);
     }
 
     private void mockRestaurantRepository() {
@@ -48,6 +50,20 @@ public class RestaurantServiceTests {
         given(restaurantRepository.findAllByAddressContainingAndCategoryId(
                 "서울", 1L)).willReturn(restaurants);
         given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
+    }
+
+    private void mockReviewRepository() {
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(Review.builder()
+                .id(1L)
+                .writer("poppo")
+                .description("JMTGR")
+                .score(3)
+                .restaurantId(1004L)
+                .build());
+
+        given(reviewRepository.findAllByRestaurantId(1004L))
+                .willReturn(reviews);
     }
 
 //    @Test
@@ -129,6 +145,7 @@ public class RestaurantServiceTests {
 
     @Test
     public void getRestaurantWithExisted() {
+
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         assertThat(restaurant.getId(), is(1004L));

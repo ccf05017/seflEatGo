@@ -9,14 +9,14 @@ import java.util.List;
 @Service
 public class RestaurantService {
 
-    @Autowired
     RestaurantRepository restaurantRepository;
 
-    @Autowired
     ReviewRepository reviewRepository;
 
-    public RestaurantService(RestaurantRepository restaurantRepository) {
+    @Autowired
+    public RestaurantService(RestaurantRepository restaurantRepository, ReviewRepository reviewRepository) {
         this.restaurantRepository = restaurantRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     public List<Restaurant> getRestaurants(String region, Long categoryId) {

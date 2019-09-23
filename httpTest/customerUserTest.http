@@ -13,12 +13,3 @@ GET http://localhost:8080/users
 
 ###
 
-POST http://localhost:8080/session
-Content-Type: application/json
-
-{
-  "email": "poppo@gmail.com",
-  "password": "password"
-}
-
-###
