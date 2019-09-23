@@ -1,6 +1,7 @@
 package com.saul.springboot.selfDemo.utils;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -16,11 +17,18 @@ public class JwtUtil {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String createToken(Long userId, String userName) {
+    public String createToken(Long userId, String userName, Long restaurantId) {
 
-        String token = Jwts.builder()
+        JwtBuilder jwtBuilder = Jwts.builder()
                 .claim("userId", userId)
-                .claim("userName", userName)
+                .claim("userName", userName);
+
+        // restaurantId가 오는 경우만 만들어지도록
+        if (restaurantId != null) {
+            jwtBuilder.claim("restaurantId", restaurantId);
+        }
+
+        String token = jwtBuilder
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 

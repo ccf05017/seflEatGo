@@ -34,6 +34,8 @@ public class User {
 
     private String password;
 
+    private Long restaurantId;
+
     public boolean isAdmin() {
 
         return level >= 100;
@@ -45,9 +47,20 @@ public class User {
         this.level = level;
     }
 
+    public void setRestaurantId(Long restaurantId) {
+
+        this.restaurantId = restaurantId;
+        this.level = 50;
+    }
+
     public boolean isActive() {
 
         return this.level > 0;
+    }
+
+    public boolean isRestaurantOwner() {
+
+        return this.level == 50;
     }
 
     public void deactivate() {

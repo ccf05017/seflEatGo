@@ -364,3 +364,8 @@
 ### 로그인 API 분리
 - [X] 새로운 모듈 생성
 - [X] 새로운 모듈로 기존의 login 기능 모두 이관
+- [X] JWT에 레스토랑 주인 여부 판단할 수 있는 정보 추가
+- [X] User 도메인 수정 (restaurantId 추가)
+- [X] createToken에 정보 추가
+
+* 파라미터를 전달하기 전 정합성 확인(isRestaurantOwner)을 통해 쓸모없는 데이터를 걸러낼 수 있음

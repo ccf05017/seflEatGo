@@ -42,4 +42,21 @@ public class UserTests {
         assertThat(user.getAccessToken()).isEqualTo("");
 
     }
+
+    @Test
+    public void isRestaurantOwner() {
+
+        User mockUser = User.builder()
+                .email("poppo@gmail.com")
+                .name("poppo")
+                .level(1)
+                .build();
+
+        assertThat(mockUser.isRestaurantOwner()).isFalse();
+
+        mockUser.setRestaurantId(33L);
+
+        assertThat(mockUser.isRestaurantOwner()).isTrue();
+
+    }
 }
