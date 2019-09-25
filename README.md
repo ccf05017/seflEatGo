@@ -371,9 +371,11 @@
 * 파라미터를 전달하기 전 정합성 확인(isRestaurantOwner)을 통해 쓸모없는 데이터를 걸러낼 수 있음
 
 ## 20190924
-### 레스토랑 예약 기능 구현
+### 레스토랑 예약 기능 구현 (Customer API)
 - [X] Customer API Reservation Controller POST 구현
 - [X] Customer API Reservation Service add 기능 구현
 - [X] Reservation Domain 구현(id, userId, restaurantId, partySize, Date, Time)
 - [X] Reservation Request Dto 구현
 - [X] 인증 토큰 수신 기능 구현
+- [X] Reservation Repository 구현
+- [X] Reservation Service 기존처럼 구현

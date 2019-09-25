@@ -32,6 +32,7 @@ public class ReservationController {
         Reservation saved = reservationService.makeReservation(
             claims.get("userId", Long.class),
             restaurantId,
+            claims.get("userName", String.class),
             resource.getPartySize(),
             resource.getDate(),
             resource.getTime()

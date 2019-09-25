@@ -25,6 +25,8 @@ public class Reservation {
 
     Long userId;
 
+    String userName;
+
     Integer partySize;
 
     String date;

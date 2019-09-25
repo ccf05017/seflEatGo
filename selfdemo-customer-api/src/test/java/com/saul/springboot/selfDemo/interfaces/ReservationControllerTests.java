@@ -38,7 +38,7 @@ public class ReservationControllerTests {
 
         Reservation mockReservation = Reservation.builder().id(1L).build();
 
-        given(reservationService.makeReservation(33L, 3333L, partySize, date, time))
+        given(reservationService.makeReservation(33L, 3333L, "poppo", partySize, date, time))
                 .willReturn(mockReservation);
 
         mvc.perform(post("/restaurants/3333/reservations")
@@ -56,6 +56,7 @@ public class ReservationControllerTests {
         verify(reservationService).makeReservation(
                 eq(33L),
                 eq(3333L),
+                eq("poppo"),
                 eq(partySize),
                 eq(date),
                 eq(time));
