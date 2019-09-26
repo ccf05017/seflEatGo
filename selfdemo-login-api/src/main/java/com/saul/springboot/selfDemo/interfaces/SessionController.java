@@ -31,7 +31,8 @@ public class SessionController {
                 sessionRequestDto.getPassword());
 
         SessionResponseDto sessionResponseDto = SessionResponseDto.builder()
-                .accessToken(jwtUtil.createToken(
+                .accessToken(
+                        jwtUtil.createToken(
                         authenticatedUser.getId(),
                         authenticatedUser.getName(),
                         authenticatedUser.isRestaurantOwner() ? authenticatedUser.getRestaurantId() : null
