@@ -26,6 +26,9 @@ public class JwtUtilTest {
 
         String jwtToken = jwtUtil.createToken(userId, userName, null);
 
+        // retaurantId 있는 토큰 생성용
+//        String jwtToken = jwtUtil.createToken(userId, userName, 33L);
+
         assertThat(jwtToken).contains(".");
     }
 

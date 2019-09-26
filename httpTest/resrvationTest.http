@@ -1,0 +1,11 @@
+POST http://localhost:8080/restaurants/1/reservations
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoicG9wcG8ifQ.8L4mLzI9RJGPsUdwzfhlpBTmX800T9lJqIZYsTOfRGw
+Content-Type: application/json
+
+{
+  "partySize": 30,
+  "date": "2019-09-24",
+  "time": "17:00"
+}
+
+###

@@ -379,3 +379,9 @@
 - [X] 인증 토큰 수신 기능 구현
 - [X] Reservation Repository 구현
 - [X] Reservation Service 기존처럼 구현
+
+## 20190924
+### 레스토랑 예약 기능 구현 (Restaurant API)
+- [X] Restaurant API Reservation Controller GET collection 구현
+- [X] Reservation Service 기존처럼 구현
+- [X] Restaurant API 인가 기능 추가
