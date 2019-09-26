@@ -385,3 +385,7 @@
 - [X] Restaurant API Reservation Controller GET collection 구현
 - [X] Reservation Service 기존처럼 구현
 - [X] Restaurant API 인가 기능 추가
+
+## 20190926
+### Docker를 통한 배포 환경 구성
+- [ ] docker-compose 파일 작성
